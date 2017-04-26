@@ -23,8 +23,8 @@ data ChapterOutcome
         deriving (Show, Eq)
 
 fight :: Int -> Int -> Probably Int
-fight cvariable fdetails = regroup $ do
-      ((php, _), p) <- fightVanillaM cvariable  fdetails
+fight i a = regroup $ do
+      ((php, _), p) <- fightVanillaM i a
       return (max 0 php, p)
 
 fightVanillaM :: Int -> Int -> Probably (Int, Int)
@@ -38,39 +38,32 @@ fightVanilla php ohp
       fightVanillaM (php - pdmg) (ohp - odmg)
 
 update :: Int -> ChapterOutcome -> Probably (Int, Int)
-update cvariable outcome =
+update i outcome =
   case outcome of
-    Goto cid -> certain (cid, cvariable)
-    Fight fd nxt -> regroup $  do
-      (charendurance, _) <- fight cvariable fd
-      update charendurance nxt
+    Goto cid -> certain (cid, i)
+    Fight fd nxt -> do
+      (hp, _) <- fight i fd
+      update hp nxt
 
 memoState :: Memo.Memo (Int, Int)
 memoState = Memo.pair Memo.bits Memo.bits
 
-
-solveLW :: [(Int, [ChapterOutcome])] -> Int -> Solution
-solveLW book cvariable = solve memoState step (1, cvariable)
+solveLW :: [(Int, [ChapterOutcome])] -> Int -> ()
+solveLW book i = solve memoState step (1, i)
   where
-    step (cid, curvariable) = case lookup cid book of
+    step (cid, hp) = case lookup cid book of
                   Nothing -> return []
-                  Just d -> map (update curvariable) d
+                  Just d -> map (update hp) d
 
 type Probably a = [(a, Rational)]
 type Choice = [(Probably (Int, Int))]
 
-data Solution = Node
-    { _stt  :: (Int, Int)
-    , _outcome :: Probably Solution
-    }
-    | LeafLost
-        deriving (Show, Eq, Generic)
-
-instance NFData (Solution)
 
 certain :: a -> Probably a
 certain a = [(a,1)]
 
+
+-----------------------------------------------------------------------------------
 regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => Probably a -> Probably a
 regroup xs =
     let xs' = HM.toList $ HM.fromListWith (+) xs
@@ -79,16 +72,14 @@ regroup xs =
      in if s' /= s
             then error $ "Those are expected to be equal" ++ show (s', s)
             else xs'
+----------------------------------------------------------------------------------
 
-solve :: Memo.Memo (Int, Int)
-       -> ((Int, Int) -> Choice)
-       -> (Int, Int)
-       -> Solution
+
+solve :: Memo.Memo (Int, Int) -> ((Int, Int) -> Choice) -> (Int, Int) -> ()
 solve memo getChoice = go
   where
     go = memo solve'
-    solve' stt = rnf scored `seq` LeafLost
+    solve' stt = rnf scored
       where
         scored = parMap rdeepseq scoreTree (getChoice stt)
-        scoreTree  pstates = let ptrees = map (\(o, p) -> (go o, p)) pstates
-                              in Node stt ptrees
+        scoreTree = map (\(o, p) -> (go o, p))
