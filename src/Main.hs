@@ -10,16 +10,14 @@ import qualified Memo
 import Control.DeepSeq
 
 fight :: Int -> Int -> [Int]
-fight i a = map fst $ regroup $ do
-      ((php, _), p) <- fightVanillaM i a
-      return (php, p)
+fight i a = map fst $ fightVanillaM i a
 
-fightVanillaM :: Int -> Int -> Probably (Int, Int)
+fightVanillaM :: Int -> Int -> [(Int, Int)]
 fightVanillaM = Memo.memo2 Memo.bits Memo.bits fightVanilla
 
-fightVanilla :: Int -> Int -> Probably (Int, Int)
+fightVanilla :: Int -> Int -> [(Int, Int)]
 fightVanilla php ohp
-  | php <= 0 || ohp <= 0 = [((max 0 php, max 0 ohp), 1)]
+  | php <= 0 || ohp <= 0 = [(max 0 php, max 0 ohp)]
   | otherwise = regroup $ do
       (odmg, pdmg) <- [(9,3),(10,2),(11,2),(12,2),(14,1),(16,1),(18,0),(100,0),(100,0),(100,0)]
       fightVanillaM (php - pdmg) (ohp - odmg)
@@ -39,8 +37,6 @@ solveLW :: ()
 solveLW = solve memoState step (100, 100)
   where
     step (cid, hp) = map (update hp) (fibFight cid)
-
-type Probably a = [(a, Int)]
 
 -----------------------------------------------------------------------------------
 regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => [(a, Int)] -> [(a, Int)]
