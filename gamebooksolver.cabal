@@ -15,14 +15,9 @@ cabal-version:       >=1.10
 
 library
   hs-source-dirs:      src
-  exposed-modules:     Solver
-                       Parallel
+  exposed-modules:     Parallel
                        Memo
-                       LoneWolf.Chapter
-                       LoneWolf.Combat
-                       LoneWolf.Rules
-                       LoneWolf.Choices
-                       LoneWolf.Solve
+                       LoneWolf
   ghc-options:         -Wall -funbox-strict-fields -O0
   build-depends:       base >= 4.7 && < 5
                      , unordered-containers

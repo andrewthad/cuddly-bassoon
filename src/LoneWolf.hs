@@ -1,0 +1,146 @@
+{-# LANGUAGE RankNTypes #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE DeriveGeneric #-}
+{-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE TupleSections #-}
+{-# LANGUAGE DeriveGeneric #-}
+
+module LoneWolf
+    
+    where
+
+import Data.Hashable
+import Data.List
+import Data.Ord (comparing)
+import GHC.Generics
+import Parallel
+import qualified Data.HashMap.Strict as HM
+import qualified Memo
+
+
+data Decision
+   = Decisions [Decision]
+   | NoDecision ChapterOutcome
+   deriving (Show, Eq)
+
+
+data ChapterOutcome
+        = Fight Int ChapterOutcome
+        | Conditionally [(ChapterOutcome)]
+        | Goto Int
+        deriving (Show, Eq)
+
+
+flattenDecision :: Int -> Decision -> [([String], ChapterOutcome)]
+flattenDecision cvariable d = case d of
+        NoDecision o -> [([], o)]
+        Decisions lst -> do
+            d' <- lst
+            (alldesc, o) <- flattenDecision cvariable d'
+            return ( alldesc, o)
+
+fight :: Int -> Int -> Probably Int
+fight cvariable fdetails = regroup $ do
+      ((php, _), p) <- fightVanillaM cvariable  fdetails
+      return (max 0 php, p)
+
+fightVanillaM :: Int -> Int -> Probably (Int, Int)
+fightVanillaM = Memo.memo2 Memo.bits Memo.bits fightVanilla
+
+fightVanilla :: Int -> Int -> Probably (Int, Int)
+fightVanilla php ohp
+  | php <= 0 || ohp <= 0 = certain (max 0 php, max 0 ohp)
+  | otherwise = regroup $ do
+      (odmg, pdmg) <- [(9,3),(10,2),(11,2),(12,2),(14,1),(16,1),(18,0),(100,0),(100,0),(100,0)]
+      fightVanillaM (php - pdmg) (ohp - odmg)
+
+update :: Int -> ChapterOutcome -> Probably (Int, Int)
+update cvariable outcome =
+  case outcome of
+    Goto cid -> certain (cid, cvariable)
+    Conditionally (o:_) -> update cvariable o
+    Conditionally _ -> undefined
+    Fight fd nxt -> regroup $  do
+      (charendurance, _) <- fight cvariable fd
+      update charendurance nxt
+
+memoState :: Memo.Memo (Int, Int)
+memoState = Memo.pair Memo.bits Memo.bits
+
+
+solveLW :: [(Int, Decision)] -> Int -> Solution (Int, Int)
+solveLW book cvariable = solve memoState step (const Unknown) (1, cvariable)
+  where
+    chapters = book
+    step (cid, curvariable ) = case lookup cid chapters of
+                  Nothing -> return ("", [])
+                  Just d -> do
+                      (desc, outcome) <- flattenDecision curvariable d
+                      return (unwords desc, update curvariable outcome)
+    step _ = [("", [])]
+
+
+
+type Probably a = [(a, Rational)]
+type Choice state = [(String, Probably state)]
+
+data Solution state = Node { _stt  :: state
+                                       , _score :: Rational
+                                       , _outcome :: Probably (Solution state)
+                                       }
+                                | LeafLost
+                                | LeafWin Rational state
+                                deriving (Show, Eq, Generic)
+
+instance (NFData state) => NFData (Solution state)
+
+data Score = Lose | Win Rational | Unknown
+
+certain :: a -> Probably a
+certain a = [(a,1)]
+
+
+
+regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => Probably a -> Probably a
+regroup xs =
+    let xs' = HM.toList $ HM.fromListWith (+) xs
+        !s' = sum (map snd xs')
+        s  = sum (map snd xs)
+     in if s' /= s
+            then error $ "very bad" ++ show ("s'" :: String, s', "s" :: String, s)
+            else xs'
+
+winStates :: (Show state, NFData state, Eq state, Hashable state, Ord state) => Solution state -> Probably state
+winStates s = case s of
+  LeafLost -> []
+  LeafWin _ st -> certain st
+  Node _ _ ps -> regroup $ concat $ parMap rdeepseq (\(o,p) -> fmap (*p) <$> winStates o) ps
+
+getSolScore :: Solution state -> Rational
+getSolScore s = case s of
+                 LeafLost -> 0
+                 LeafWin x _ -> x
+                 Node _ x _ -> x
+
+solve ::  (NFData state)
+       => Memo.Memo state
+       -> (state -> Choice state)
+       -> (state -> Score)
+       -> state
+       -> Solution state
+solve memo getChoice score = go
+  where
+    go = memo solve'
+    solve' stt =
+      case score stt of
+          Lose -> LeafLost
+          Win x -> LeafWin x stt
+          Unknown -> if null choices
+                      then LeafLost
+                      else maximumBy (comparing getSolScore) scored
+      where
+        choices = getChoice stt
+        scored = parMap rdeepseq scoreTree (getChoice stt)
+        scoreTree (cdesc, pstates) = let ptrees = map (\(o, p) -> (go o, p)) pstates
+                                     in Node stt (sum (map (\(o, p) -> p * getSolScore o) ptrees)) ptrees
+

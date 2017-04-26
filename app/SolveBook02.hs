@@ -1,8 +1,7 @@
 module Main where
 
-import LoneWolf.Solve
+import LoneWolf
 import LoneWolf.Book02
-import Solver
 
 main :: IO ()
 main = do

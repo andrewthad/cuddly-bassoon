@@ -1,6 +1,6 @@
 module LoneWolf.Book02 where
 
-import LoneWolf.Chapter
+import LoneWolf
 
 chapters :: [(Int, Decision)]
 chapters =
