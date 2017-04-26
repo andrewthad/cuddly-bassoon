@@ -1,5 +1,5 @@
 module LoneWolf.Solve
-    (solveLW, startConstant, startVariable) where
+    (solveLW, startVariable) where
 
 import Solver (Solution(..), Score(..), solve, certain)
 import LoneWolf.Choices (flattenDecision)
@@ -9,9 +9,6 @@ import LoneWolf.Rules
 import qualified Memo
 import Data.Word
 
-
-startConstant :: CharacterConstant
-startConstant = CharacterConstant 20
 
 startVariable :: CharacterVariable
 startVariable = mkCharacter 20
@@ -33,15 +30,15 @@ fromWord64 (cid16, cvalue) =
     let cvariable = CharacterVariable cvalue
     in NewChapter (fromIntegral cid16) cvariable
 
-solveLW :: [(ChapterId, Chapter)] -> CharacterConstant -> CharacterVariable -> Solution NextStep String
-solveLW book cconstant cvariable = solve memoState step getScore (NewChapter 1 cvariable)
+solveLW :: [(ChapterId, Chapter)] -> CharacterVariable -> Solution NextStep String
+solveLW book cvariable = solve memoState step getScore (NewChapter 1 cvariable)
   where
     chapters = book
     step (NewChapter cid curvariable ) = case lookup cid chapters of
                   Nothing -> error ("Unknown chapter: " ++ show cid)
                   Just (Chapter  d) -> do
-                      (desc, outcome) <- flattenDecision cconstant curvariable d
-                      return (unwords desc, update cconstant curvariable outcome)
+                      (desc, outcome) <- flattenDecision curvariable d
+                      return (unwords desc, update curvariable outcome)
     step (HasWon c) = [("won", certain (HasWon c))]
     step HasLost = [("lost", certain HasLost)]
     getScore ns = case ns of

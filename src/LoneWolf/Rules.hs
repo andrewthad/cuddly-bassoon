@@ -25,17 +25,17 @@ data NextStep = NewChapter !ChapterId !CharacterVariable
 instance Hashable NextStep
 instance NFData NextStep
 
-update :: CharacterConstant -> CharacterVariable -> ChapterOutcome -> Probably NextStep
-update cconstant cvariable outcome =
+update :: CharacterVariable -> ChapterOutcome -> Probably NextStep
+update cvariable outcome =
   case outcome of
     Goto cid -> certain (NewChapter cid cvariable)
     GameLost -> certain HasLost
     GameWon -> certain (HasWon cvariable)
-    Conditionally (o:_) -> update cconstant cvariable o
+    Conditionally (o:_) -> update cvariable o
     Conditionally _ -> undefined
     Randomly rands -> regroup $ do
       (p, o) <- rands
-      fmap (*p) <$> update cconstant cvariable o
+      fmap (*p) <$> update cvariable o
     Fight fd nxt -> regroup $  do
-      (charendurance, _) <- fight cconstant cvariable fd
-      update cconstant (cvariable & curendurance .~ charendurance) nxt
+      (charendurance, _) <- fight cvariable fd
+      update (cvariable & curendurance .~ charendurance) nxt
