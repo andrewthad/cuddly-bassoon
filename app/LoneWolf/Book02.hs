@@ -60,10 +60,7 @@ chapters =
         (NoDecision (Goto 196)))
   , ( 10
     , Chapter
-        (CanTake
-           TicketVol2
-           1
-           (NoDecision
+        ((NoDecision
               (Randomly
                  [(2 % 5, Goto 51), (3 % 10, Goto 195), (3 % 10, Goto 339)]))))
   , ( 11
@@ -92,22 +89,7 @@ chapters =
         (NoDecision (Goto 305)))
   , ( 15
     , Chapter
-        (CanTake
-           Backpack
-           1
-           (CanTake
-              (Weapon BroadSword)
-              1
-              (CanTake
-                 (Weapon Mace)
-                 1
-                 (CanTake
-                    (Weapon Quarterstaff)
-                    1
-                    (CanTake
-                       HealingPotion
-                       1
-                       (CanTake Meal 3 (CanTake Gold 12 (NoDecision (Goto 244))))))))))
+        (NoDecision (Goto 244)))
   , ( 16
     , Chapter
         (NoDecision (Goto 268)))
@@ -324,13 +306,10 @@ chapters =
         (NoDecision GameLost))
   , ( 55
     , Chapter
-        (Canbuy
-           (Weapon BroadSword)
-           12
            (Decisions
               [ ( NoDecision (Goto 347))
               , ( NoDecision (Goto 3))
-              ])))
+              ]))
   , ( 56
     , Chapter
         (NoDecision (Goto 127)))
@@ -441,7 +420,7 @@ chapters =
         (NoDecision (Goto 240)))
   , ( 76
     , Chapter
-        (CanTake (Weapon Dagger) 1 (CanTake Gold 2 (NoDecision (Goto 33)))))
+        (( (NoDecision (Goto 33)))))
   , ( 77
     , Chapter
         (Decisions
@@ -460,7 +439,7 @@ chapters =
            ]))
   , ( 79
     , Chapter
-        (CanTake (Weapon Sommerswerd) 1 (NoDecision (Goto 40))))
+        ((NoDecision (Goto 40))))
   , ( 80
     , Chapter
         (Decisions
@@ -492,13 +471,7 @@ chapters =
               (Goto 124))))
   , ( 86
     , Chapter
-        (CanTake
-           (Weapon Mace)
-           1
-           (CanTake
-              Gold
-              3
-              (Decisions
+        ((              (Decisions
                  [ ( NoDecision (Goto 215))
                  , ( NoDecision (Goto 303))
                  , ( NoDecision (Goto 129))
@@ -547,28 +520,13 @@ chapters =
   , ( 91
     , Chapter
         (Decisions
-           [ ( CanTake Backpack 1 (CanTake Meal 1 (NoDecision (Goto 245))))
-           , ( CanTake
-                 (Weapon Quarterstaff)
-                 1
-                 (CanTake Backpack 1 (NoDecision (Goto 245))))
-           , ( CanTake
-                 (Weapon Quarterstaff)
-                 1
-                 (CanTake Meal 1 (NoDecision (Goto 245))))
-           , ( CanTake Meal 1 (CanTake Meal 1 (NoDecision (Goto 245))))
-           , ( CanTake
-                 (Weapon Dagger)
-                 1
-                 (CanTake Backpack 1 (NoDecision (Goto 245))))
-           , ( CanTake
-                 (Weapon Dagger)
-                 1
-                 (CanTake (Weapon Quarterstaff) 1 (NoDecision (Goto 245))))
-           , ( CanTake
-                 (Weapon Dagger)
-                 1
-                 (CanTake Meal 1 (NoDecision (Goto 245))))
+           [ ( ( (NoDecision (Goto 245))))
+           , ( ( (NoDecision (Goto 245))))
+           , ( ( (NoDecision (Goto 245))))
+           , ( ( (NoDecision (Goto 245))))
+           , ( ( (NoDecision (Goto 245))))
+           , ( ( (NoDecision (Goto 245))))
+           , ( ( (NoDecision (Goto 245))))
            ]))
   , ( 92
     , Chapter
@@ -621,7 +579,7 @@ chapters =
         (Decisions
            [ ( NoDecision
                  ((Goto 249)))
-           , ( CanTake Laumspur 1 (NoDecision (Goto 249)))
+           , (  (NoDecision (Goto 249)))
            ]))
   , ( 104
     , Chapter
@@ -634,10 +592,7 @@ chapters =
         (NoDecision (Randomly [(1 % 2, Goto 286), (1 % 2, Goto 120)])))
   , ( 106
     , Chapter
-        (CanTake
-           (Weapon MagicSpear)
-           1
-           (NoDecision
+        ((NoDecision
               (Fight
                  (FightDetails
                   {  _fendurance = Endurance {getEndurance = 30}
@@ -740,13 +695,11 @@ chapters =
               ])))
   , ( 123
     , Chapter
-        (CanTake (Weapon Sommerswerd) 1 (NoDecision (Goto 40))))
+        ( (NoDecision (Goto 40))))
   , ( 124
     , Chapter
-        (CanTake
-           (Weapon ShortSword)
-           1
-           (CanTake Gold 42 (CanTake (Weapon Dagger) 1 (NoDecision (Goto 33))))))
+        (
+           ( ( (NoDecision (Goto 33))))))
   , ( 125
     , Chapter
         (NoDecision (Goto 300)))
@@ -789,10 +742,7 @@ chapters =
                  (Goto 301)))))
   , ( 132
     , Chapter
-        (CanTake
-           (Weapon Spear)
-           1
-           (Decisions
+        (           (Decisions
               [ ( NoDecision (Goto 317))
               , ( NoDecision (Goto 150))
               ])))
@@ -826,10 +776,7 @@ chapters =
            ]))
   , ( 139
     , Chapter
-        (CanTake
-           Meal
-           2
-           (Decisions
+        (           (Decisions
               [ ( NoDecision (Goto 27))
               , ( NoDecision (Goto 114))
               ])))
@@ -854,10 +801,7 @@ chapters =
            ]))
   , ( 144
     , Chapter
-        (CanTake
-           Meal
-           2
-           (NoDecision ((Goto 349)))))
+        (           (NoDecision ((Goto 349)))))
   , ( 145
     , Chapter
         (NoDecision
@@ -1047,25 +991,7 @@ chapters =
         (NoDecision (Goto 337)))
   , ( 181
     , Chapter
-        (Canbuy
-           Backpack
-           1
-           (Canbuy
-              (Weapon Mace)
-              4
-              (Canbuy
-                 (Weapon Spear)
-                 5
-                 (Canbuy
-                    (Weapon Warhammer)
-                    6
-                    (Canbuy
-                       (Weapon ShortSword)
-                       3
-                       (Canbuy
-                          (Weapon Dagger)
-                          2
-                          (Canbuy (Weapon Sword) 4 (NoDecision (Goto 186))))))))))
+        (NoDecision (Goto 186)))
   , ( 182
     , Chapter
         (NoDecision (Goto 177)))
@@ -1093,13 +1019,7 @@ chapters =
         (Decisions []))
   , ( 187
     , Chapter
-        (CanTake
-           Gold
-           6
-           (CanTake
-              (Weapon Spear)
-              2
-              (CanTake (Weapon Spear) 2 (NoDecision (Goto 265))))))
+        (NoDecision (Goto 265)))
   , ( 188
     , Chapter
         (NoDecision (Goto 312)))
@@ -1241,7 +1161,7 @@ chapters =
            ( (Goto 312))))
   , ( 220
     , Chapter
-        (CanTake Gold 23 (NoDecision (Goto 33))))
+        ( (NoDecision (Goto 33))))
   , ( 221
     , Chapter
         (NoDecision (Goto 88)))
@@ -1294,15 +1214,6 @@ chapters =
            ]))
   , ( 231
     , Chapter
-        (CanTake
-           (Weapon Dagger)
-           1
-           (CanTake
-              Gold
-              5
-              (CanTake
-                 SealHammerdalVol2
-                 1
                  (Decisions
                     [ (
                           (NoDecision (Goto 182)))
@@ -1314,7 +1225,7 @@ chapters =
                           (NoDecision (Goto 253)))
                     , (
                           (NoDecision (Goto 319)))
-                    ])))))
+                    ]))
   , ( 232
     , Chapter
         (Decisions
@@ -1337,9 +1248,7 @@ chapters =
         (NoDecision GameLost))
   , ( 235
     , Chapter
-        (CanTake
-           (Weapon ShortSword)
-           1
+        (
            (Decisions
               [ ( NoDecision (Goto 132))
               , ( NoDecision (Goto 90))
@@ -1467,7 +1376,7 @@ chapters =
         (NoDecision (Goto 161)))
   , ( 260
     , Chapter
-        (CanTake (Weapon Sword) 1 (NoDecision (Goto 240))))
+        ((NoDecision (Goto 240))))
   , ( 261
     , Chapter
         (Decisions
@@ -1476,19 +1385,7 @@ chapters =
            ]))
   , ( 262
     , Chapter
-        (CanTake
-           Meal
-           6
-           (CanTake
-              Gold
-              6
-              (CanTake
-                 (Weapon Quarterstaff)
-                 1
-                 (CanTake
-                    (Weapon Mace)
-                    1
-                    (CanTake (Weapon Sword) 1 (NoDecision (Goto 65))))))))
+        (NoDecision (Goto 65)))
   , ( 264
     , Chapter
         (NoDecision (Goto 312)))
@@ -1501,62 +1398,8 @@ chapters =
               ])))
   , ( 266
     , Chapter
-        (Canbuy
-           (Weapon Quarterstaff)
-           3
-           (Canbuy
-              (Weapon Axe)
-              3
-              (Canbuy
-                 (Weapon Mace)
-                 4
-                 (Canbuy
-                    (Weapon Spear)
-                    5
-                    (Canbuy
-                       (Weapon Warhammer)
-                       6
-                       (Canbuy
-                          (Weapon ShortSword)
-                          3
-                          (Canbuy
-                             (Weapon BroadSword)
-                             7
-                             (Canbuy
-                                (Weapon Dagger)
-                                2
-                                (Canbuy
-                                   (Weapon Sword)
-                                   4
-                                   (Cansell
-                                      (Weapon Quarterstaff)
-                                      2
-                                      (Cansell
-                                         (Weapon Axe)
-                                         2
-                                         (Cansell
-                                            (Weapon Mace)
-                                            3
-                                            (Cansell
-                                               (Weapon Spear)
-                                               4
-                                               (Cansell
-                                                  (Weapon Warhammer)
-                                                  5
-                                                  (Cansell
-                                                     (Weapon ShortSword)
-                                                     2
-                                                     (Cansell
-                                                        (Weapon BroadSword)
-                                                        6
-                                                        (Cansell
-                                                           (Weapon Dagger)
-                                                           1
-                                                           (Cansell
-                                                              (Weapon Sword)
-                                                              3
-                                                              (NoDecision
-                                                                 (Goto 32)))))))))))))))))))))
+        (NoDecision
+           (Goto 32)))
   , ( 267
     , Chapter
         (Decisions
@@ -1600,13 +1443,8 @@ chapters =
         (NoDecision (Goto 160)))
   , ( 274
     , Chapter
-        (CanTake
-           Gold
-           6
-           (CanTake
-              (Weapon Mace)
-              1
-              (CanTake (Weapon Sword) 1 (NoDecision (Goto 132))))))
+        ((
+              ((NoDecision (Goto 132))))))
   , ( 275
     , Chapter
         (NoDecision GameLost))
@@ -1657,28 +1495,7 @@ chapters =
                  (Goto 187)))))
   , ( 283
     , Chapter
-        (Canbuy
-           Backpack
-           1
-           (Canbuy
-              Meal
-              2
-              (Canbuy
-                 Meal
-                 2
-                 (Canbuy
-                    Meal
-                    2
-                    (Canbuy
-                       (Weapon Spear)
-                       5
-                       (Canbuy
-                          (Weapon BroadSword)
-                          6
-                          (Canbuy
-                             (Weapon Dagger)
-                             2
-                             (Canbuy (Weapon Sword) 4 (NoDecision (Goto 245)))))))))))
+        (NoDecision (Goto 245)))
   , ( 284
     , Chapter
         (NoDecision ((Goto 9))))
@@ -1788,13 +1605,7 @@ chapters =
               ])))
   , ( 301
     , Chapter
-        (CanTake
-           Gold
-           3
-           (CanTake
-              (Weapon Dagger)
-              1
-              (CanTake (Weapon ShortSword) 1 (NoDecision (Goto 20))))))
+        (NoDecision (Goto 20)))
   , ( 302
     , Chapter
         (NoDecision (Goto 15)))
@@ -1809,7 +1620,7 @@ chapters =
         (NoDecision GameLost))
   , ( 305
     , Chapter
-        (CanTake Gold 5 (NoDecision (Goto 32))))
+        ( (NoDecision (Goto 32))))
   , ( 306
     , Chapter
         (NoDecision
@@ -1940,20 +1751,14 @@ chapters =
            ]))
   , ( 329
     , Chapter
-        (CanTake Gold 10 (NoDecision (Goto 197))))
+        ( (NoDecision (Goto 197))))
   , ( 330
     , Chapter
         (NoDecision
            ((Goto 200))))
   , ( 331
     , Chapter
-        (CanTake
-           Gold
-           3
-           (CanTake
-              (Weapon Dagger)
-              1
-              (CanTake (Weapon Sword) 1 (NoDecision (Goto 65))))))
+        (NoDecision (Goto 65)))
   , ( 332
     , Chapter
         (EvadeFight

@@ -22,9 +22,6 @@ data Chapter = Chapter { _pchoice :: Decision
 
 data Decision
    = Decisions [Decision]
-   | CanTake Item Int Decision
-   | Canbuy Item Price Decision
-   | Cansell Item Price Decision
    | NoDecision ChapterOutcome
    | EvadeFight Rounds ChapterId FightDetails ChapterOutcome
    | AfterCombat Decision

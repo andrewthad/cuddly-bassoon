@@ -15,6 +15,5 @@ flattenDecision cconstant cvariable d = case d of
             d' <- lst
             (alldesc, o) <- flattenDecision cconstant cvariable d'
             return ( alldesc, o)
-        CanTake _ _ nxt -> flattenDecision cconstant cvariable nxt
 
         _ -> []
