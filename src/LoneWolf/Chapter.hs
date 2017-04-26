@@ -12,11 +12,6 @@ type Rounds = Int
 type Price = Int
 
 
-
-data Chapter = Chapter { _pchoice :: Decision
-                       } deriving (Show, Eq)
-
-
 data Decision
    = Decisions [Decision]
    | NoDecision ChapterOutcome

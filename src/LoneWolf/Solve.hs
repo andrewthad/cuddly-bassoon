@@ -3,7 +3,7 @@ module LoneWolf.Solve
 
 import Solver (Solution(..), Score(..), solve, certain)
 import LoneWolf.Choices (flattenDecision)
-import LoneWolf.Chapter (ChapterId, Chapter(..))
+import LoneWolf.Chapter (Decision(..))
 import LoneWolf.Rules
 import qualified Memo
 
@@ -24,13 +24,13 @@ fromWord64 :: (Int, Int) -> NextStep
 fromWord64 (0, 0) = HasLost
 fromWord64 (cid16, cvalue) = NewChapter cid16 cvalue
 
-solveLW :: [(ChapterId, Chapter)] -> Int -> Solution NextStep String
+solveLW :: [(Int, Decision)] -> Int -> Solution NextStep String
 solveLW book cvariable = solve memoState step getScore (NewChapter 1 cvariable)
   where
     chapters = book
     step (NewChapter cid curvariable ) = case lookup cid chapters of
                   Nothing -> return ("", [])
-                  Just (Chapter  d) -> do
+                  Just d -> do
                       (desc, outcome) <- flattenDecision curvariable d
                       return (unwords desc, update curvariable outcome)
     step (HasWon c) = [("won", certain (HasWon c))]
