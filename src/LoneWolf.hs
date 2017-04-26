@@ -1,14 +1,7 @@
 {-# LANGUAGE RankNTypes #-}
-{-# LANGUAGE OverloadedStrings #-}
-{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE BangPatterns #-}
-{-# LANGUAGE FlexibleInstances #-}
-{-# LANGUAGE TupleSections #-}
-{-# LANGUAGE DeriveGeneric #-}
 
-module LoneWolf
-    
-    where
+module LoneWolf where
 
 import Data.Hashable
 import Parallel
@@ -36,10 +29,10 @@ fightVanilla php ohp
       (odmg, pdmg) <- [(9,3),(10,2),(11,2),(12,2),(14,1),(16,1),(18,0),(100,0),(100,0),(100,0)]
       fightVanillaM (php - pdmg) (ohp - odmg)
 
-update :: Int -> ChapterOutcome -> Probably (Int, Int)
+update :: Int -> ChapterOutcome -> [(Int, Int)]
 update i outcome =
   case outcome of
-    Goto cid -> certain (cid, i)
+    Goto cid -> [(cid, i)]
     Fight fd nxt -> do
       hp <- fight i fd
       update hp nxt
@@ -51,11 +44,10 @@ solveLW :: [(Int, [ChapterOutcome])] -> Int -> ()
 solveLW book i = solve memoState step (1, i)
   where
     step (cid, hp) = case lookup cid book of
-                  Nothing -> return []
+                  Nothing -> []
                   Just d -> map (update hp) d
 
 type Probably a = [(a, Rational)]
-type Choice = [(Probably (Int, Int))]
 
 
 certain :: a -> Probably a
@@ -74,11 +66,10 @@ regroup xs =
 ----------------------------------------------------------------------------------
 
 
-solve :: Memo.Memo (Int, Int) -> ((Int, Int) -> Choice) -> (Int, Int) -> ()
+solve :: Memo.Memo (Int, Int) -> ((Int, Int) -> [[(Int, Int)]]) -> (Int, Int) -> ()
 solve memo getChoice = go
   where
     go = memo solve'
     solve' stt = rnf scored
       where
-        scored = parMap rdeepseq scoreTree (getChoice stt)
-        scoreTree = map (\(o, p) -> (go o, p))
+        scored = parMap rdeepseq (map go) (getChoice stt)
