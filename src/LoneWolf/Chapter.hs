@@ -4,7 +4,6 @@ module LoneWolf.Chapter
     
     where
 
-import LoneWolf.Character
 import Solver
 
 
@@ -37,8 +36,8 @@ data ChapterOutcome
         | GameWon
         deriving (Show, Eq)
 
-data FightDetails = FightDetails { _fendurance   :: Endurance } deriving (Show, Eq)
+data FightDetails = FightDetails { _fendurance   :: Int } deriving (Show, Eq)
 
 
-fendurance :: Lens' FightDetails Endurance
+fendurance :: Lens' FightDetails Int
 fendurance f  e = (\e' -> e { _fendurance = e'}) <$> f (_fendurance e)

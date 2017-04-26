@@ -2,7 +2,6 @@ module LoneWolf.Book02 where
 
 import Data.Ratio
 import LoneWolf.Chapter
-import LoneWolf.Character
 
 chapters :: [(ChapterId, Chapter)]
 chapters =

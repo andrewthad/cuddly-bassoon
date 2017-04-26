@@ -1,7 +1,6 @@
 {-# LANGUAGE RankNTypes #-}
 module LoneWolf.Combat (fight) where
 
-import LoneWolf.Character
 import LoneWolf.Chapter
 import Solver
 
@@ -14,10 +13,10 @@ fight cvariable fdetails = regroup $ do
       ((php, _), p) <- fightVanillaM (cvariable ^. id) ohp
       return (max 0 php, p)
 
-fightVanillaM :: Endurance -> Endurance -> Probably (Endurance, Endurance)
+fightVanillaM :: Int -> Int -> Probably (Int, Int)
 fightVanillaM = Memo.memo2 Memo.bits Memo.bits fightVanilla
 
-fightVanilla :: Endurance -> Endurance -> Probably (Endurance, Endurance)
+fightVanilla :: Int -> Int -> Probably (Int, Int)
 fightVanilla php ohp
   | php <= 0 || ohp <= 0 = certain (max 0 php, max 0 ohp)
   | otherwise = regroup $ do

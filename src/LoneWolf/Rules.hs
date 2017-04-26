@@ -4,7 +4,6 @@
 module LoneWolf.Rules
     ( NextStep(..), update) where
 
-import LoneWolf.Character
 import LoneWolf.Chapter
 import LoneWolf.Combat
 import Solver
@@ -18,14 +17,14 @@ import Parallel (NFData)
 
 
 
-data NextStep = NewChapter !ChapterId !CharacterVariable
+data NextStep = NewChapter !ChapterId !Int
               | HasLost
-              | HasWon CharacterVariable
+              | HasWon Int
               deriving (Show, Eq, Generic, Ord)
 instance Hashable NextStep
 instance NFData NextStep
 
-update :: CharacterVariable -> ChapterOutcome -> Probably NextStep
+update :: Int -> ChapterOutcome -> Probably NextStep
 update cvariable outcome =
   case outcome of
     Goto cid -> certain (NewChapter cid cvariable)

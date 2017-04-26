@@ -19,7 +19,6 @@ library
                        Lens
                        Parallel
                        Memo
-                       LoneWolf.Character
                        LoneWolf.Chapter
                        LoneWolf.Combat
                        LoneWolf.Rules

@@ -4,7 +4,6 @@ module LoneWolf.Solve
 import Solver (Solution(..), Score(..), solve, certain)
 import LoneWolf.Choices (flattenDecision)
 import LoneWolf.Chapter (ChapterId, Chapter(..))
-import LoneWolf.Character
 import LoneWolf.Rules
 import qualified Memo
 import Data.Word
