@@ -1,4 +1,4 @@
-module LoneWolf.Book02 where
+module Book02 where
 
 import LoneWolf
 

@@ -13,22 +13,27 @@ build-type:          Simple
 extra-source-files:  README.md
 cabal-version:       >=1.10
 
-library
-  hs-source-dirs:      src
-  exposed-modules:     Parallel
-                       Memo
-                       LoneWolf
-  ghc-options:         -Wall -funbox-strict-fields -O0
-  build-depends:       base >= 4.7 && < 5
-                     , unordered-containers
-                     , hashable, deepseq
-  default-language:    Haskell2010
+--library
+--  hs-source-dirs:      src
+--  exposed-modules:     Parallel
+--                       Memo
+--                       LoneWolf
+--  ghc-options:         -Wall -funbox-strict-fields -O0
+--  build-depends:       base >= 4.7 && < 5
+--                     , unordered-containers
+--                     , hashable, deepseq
+--  default-language:    Haskell2010
 
 executable gamebooksolver-solvebook02
-  hs-source-dirs:      app
+  hs-source-dirs:      src
   main-is:             SolveBook02.hs
-  ghc-options:         -threaded -rtsopts -Wall -with-rtsopts "-M16G -N8" -O0
-  other-modules:       LoneWolf.Book02
+  ghc-options:         -threaded -rtsopts -Wall -with-rtsopts "-M16G -N8" -O0 -funbox-strict-fields
+  other-modules:       Book02
+                       LoneWolf
+                       Parallel
+                       Memo
   build-depends:       base
-                     , gamebooksolver
+                     , unordered-containers
+                     , hashable
+                     , deepseq
   default-language:    Haskell2010

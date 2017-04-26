@@ -11,8 +11,6 @@ module LoneWolf
     where
 
 import Data.Hashable
-import Data.List
-import Data.Ord (comparing)
 import GHC.Generics
 import Parallel
 import qualified Data.HashMap.Strict as HM
