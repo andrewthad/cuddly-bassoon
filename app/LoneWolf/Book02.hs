@@ -1090,7 +1090,7 @@ chapters =
               (Goto 120))))
   , ( 186
     , Chapter
-        (Special Cartwheel))
+        (Decisions []))
   , ( 187
     , Chapter
         (CanTake
@@ -1357,7 +1357,7 @@ chapters =
               (Goto 309))))
   , ( 238
     , Chapter
-        (Special Cartwheel))
+        (Decisions []))
   , ( 239
     , Chapter
         (NoDecision
@@ -1827,7 +1827,7 @@ chapters =
            ]))
   , ( 308
     , Chapter
-        (Special Portholes))
+        (Decisions []))
   , ( 309
     , Chapter
         (NoDecision (Goto 26)))

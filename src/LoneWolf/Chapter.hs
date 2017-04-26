@@ -28,13 +28,7 @@ data Decision
    | NoDecision ChapterOutcome
    | EvadeFight Rounds ChapterId FightDetails ChapterOutcome
    | AfterCombat Decision
-   | Special SpecialChapter
    deriving (Show, Eq)
-
-
-data SpecialChapter = Cartwheel
-                     | Portholes
-                     deriving (Show, Eq)
 
 
 data ChapterOutcome
