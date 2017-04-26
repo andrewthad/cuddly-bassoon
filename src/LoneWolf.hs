@@ -32,13 +32,12 @@ data ChapterOutcome
         deriving (Show, Eq)
 
 
-flattenDecision :: Int -> Decision -> [([String], ChapterOutcome)]
+flattenDecision :: Int -> Decision -> [ChapterOutcome]
 flattenDecision cvariable d = case d of
-        NoDecision o -> [([], o)]
+        NoDecision o -> [o]
         Decisions lst -> do
             d' <- lst
-            (alldesc, o) <- flattenDecision cvariable d'
-            return ( alldesc, o)
+            flattenDecision cvariable d'
 
 fight :: Int -> Int -> Probably Int
 fight cvariable fdetails = regroup $ do
@@ -74,16 +73,16 @@ solveLW book cvariable = solve memoState step (1, cvariable)
   where
     chapters = book
     step (cid, curvariable ) = case lookup cid chapters of
-                  Nothing -> return ("", [])
+                  Nothing -> return []
                   Just d -> do
-                      (desc, outcome) <- flattenDecision curvariable d
-                      return (unwords desc, update curvariable outcome)
-    step _ = [("", [])]
+                      outcome <- flattenDecision curvariable d
+                      return (update curvariable outcome)
+    step _ = []
 
 
 
 type Probably a = [(a, Rational)]
-type Choice = [(String, Probably (Int, Int))]
+type Choice = [(Probably (Int, Int))]
 
 data Solution = Node
     { _stt  :: (Int, Int)
@@ -104,7 +103,7 @@ regroup xs =
         !s' = sum (map snd xs')
         s  = sum (map snd xs)
      in if s' /= s
-            then error $ "very bad" ++ show ("s'" :: String, s', "s" :: String, s)
+            then error $ "Those are expected to be equal" ++ show (s', s)
             else xs'
 
 solve :: Memo.Memo (Int, Int)
@@ -117,5 +116,5 @@ solve memo getChoice = go
     solve' stt = rnf scored `seq` LeafLost
       where
         scored = parMap rdeepseq scoreTree (getChoice stt)
-        scoreTree (_, pstates) = let ptrees = map (\(o, p) -> (go o, p)) pstates
+        scoreTree  pstates = let ptrees = map (\(o, p) -> (go o, p)) pstates
                                      in Node stt ptrees
