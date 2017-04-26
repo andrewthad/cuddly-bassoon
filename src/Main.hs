@@ -9,11 +9,6 @@ import qualified Data.HashMap.Strict as HM
 import qualified Memo
 import Control.DeepSeq
 
-data ChapterOutcome
-        = Fight Int ChapterOutcome
-        | Goto Int
-        deriving (Show, Eq)
-
 fight :: Int -> Int -> [Int]
 fight i a = map fst $ regroup $ do
       ((php, _), p) <- fightVanillaM i a
@@ -29,28 +24,16 @@ fightVanilla php ohp
       (odmg, pdmg) <- [(9,3),(10,2),(11,2),(12,2),(14,1),(16,1),(18,0),(100,0),(100,0),(100,0)]
       fightVanillaM (php - pdmg) (ohp - odmg)
 
-update :: Int -> ChapterOutcome -> [(Int, Int)]
-update i outcome =
-  case outcome of
-    Goto cid -> [(cid, i)]
-    Fight fd nxt -> do
-      hp <- fight i fd
-      update hp nxt
+update :: Int -> Int -> [(Int, Int)]
+update i outcome = (,) outcome <$> fight i outcome
 
 memoState :: Memo.Memo (Int, Int)
 memoState = Memo.pair Memo.bits Memo.bits
 
-{-
-nextState z i = case lookup i z of
-    Nothing -> []
-    Just x -> x
--}
-
-fibFight :: Int -> [ChapterOutcome]
+fibFight :: Int -> [Int]
 fibFight 0 = []
 fibFight 1 = []
-fibFight x = [Fight x (Goto (x - 1)), Fight x (Goto (x - 2))]
-
+fibFight x = [(x - 1), (x - 2)]
 
 solveLW :: ()
 solveLW = solve memoState step (14, 100)
@@ -84,7 +67,5 @@ solve memo getChoice = go
       where
         scored = parMap rdeepseq (map go) (getChoice stt)
 
-
-
 main :: IO ()
-main = length (show solveLW) `seq` return ()
+main = rnf solveLW `seq` return ()
