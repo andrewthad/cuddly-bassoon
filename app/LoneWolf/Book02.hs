@@ -32,10 +32,7 @@ chapters =
   , ( 5
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 20
-               })
+           (Fight 20
               (Goto 166))))
   , ( 6
     , Chapter
@@ -46,10 +43,7 @@ chapters =
   , ( 7
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 30
-               })
+           (Fight 30
               (Goto 33))))
   , ( 8
     , Chapter
@@ -96,10 +90,7 @@ chapters =
     , Chapter
         (NoDecision
            (
-              (Fight
-                 (FightDetails
-                  { _fendurance = 30
-                  })
+              (Fight 30
                  (Goto 166)))))
   , ( 18
     , Chapter
@@ -174,10 +165,7 @@ chapters =
   , ( 30
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 16
-               })
+           (Fight 16
               (Goto 258))))
   , ( 31
     , Chapter
@@ -196,10 +184,7 @@ chapters =
   , ( 34
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 14
-               })
+           (Fight 14
               (Goto 345))))
   , ( 35
     , Chapter
@@ -340,10 +325,7 @@ chapters =
   , ( 60
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 11
-               })
+           (Fight 11
               (Goto 76))))
   , ( 61
     , Chapter
@@ -372,10 +354,7 @@ chapters =
   , ( 66
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 15
-               })
+           (Fight 15
               (Goto 218))))
   , ( 67
     , Chapter
@@ -463,10 +442,7 @@ chapters =
   , ( 85
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 27
-               })
+           (Fight 27
               (Goto 124))))
   , ( 86
     , Chapter
@@ -496,25 +472,11 @@ chapters =
         (EvadeFight
            0
            132
-           (FightDetails
-            { _fendurance = 16
-            })
-           (Fight
-              (FightDetails
-               { _fendurance = 9
-               })
-              (Fight
-                 (FightDetails
-                  { _fendurance = 14
-                  })
-                 (Fight
-                    (FightDetails
-                     {  _fendurance = 8
-                     })
-                    (Fight
-                       (FightDetails
-                        {  _fendurance = 17
-                        })
+           16
+           (Fight 9
+              (Fight 14
+                 (Fight 8
+                    (Fight 17
                        (Goto 274)))))))
   , ( 91
     , Chapter
@@ -592,10 +554,7 @@ chapters =
   , ( 106
     , Chapter
         ((NoDecision
-              (Fight
-                 (FightDetails
-                  {  _fendurance = 30
-                  })
+              (Fight 30
                  (Goto 320)))))
   , ( 107
     , Chapter
@@ -616,9 +575,7 @@ chapters =
         (EvadeFight
            0
            65
-           (FightDetails
-            { _fendurance = 22
-            })
+           22
            (Goto 331)))
   , ( 111
     , Chapter
@@ -711,10 +668,7 @@ chapters =
   , ( 128
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               {  _fendurance = 19
-               })
+           (Fight 19
               (Goto 237))))
   , ( 129
     , Chapter
@@ -727,17 +681,9 @@ chapters =
         (EvadeFight
            0
            121
-           (FightDetails
-            { _fendurance = 23
-            })
-           (Fight
-              (FightDetails
-               { _fendurance = 21
-               })
-              (Fight
-                 (FightDetails
-                  { _fendurance = 20
-                  })
+           23
+           (Fight 21
+              (Fight 20
                  (Goto 301)))))
   , ( 132
     , Chapter
@@ -808,10 +754,7 @@ chapters =
   , ( 146
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 15
-               })
+           (Fight 15
               (Goto 345))))
   , ( 147
     , Chapter
@@ -869,17 +812,12 @@ chapters =
         (EvadeFight
            0
            65
-           (FightDetails
-            { _fendurance = 22
-            })
+           22
            (Goto 331)))
   , ( 158
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 23
-               })
+           (Fight 23
               (Goto 220))))
   , ( 159
     , Chapter
@@ -894,10 +832,7 @@ chapters =
     , Chapter
         (EvadeFight
            0
-           244
-           (FightDetails
-            { _fendurance = 27
-            })
+           244 27
            (Goto 302)))
   , ( 163
     , Chapter
@@ -1005,13 +940,8 @@ chapters =
         (EvadeFight
            0
            286
-           (FightDetails
-            { _fendurance = 25
-            })
-           (Fight
-              (FightDetails
-               { _fendurance = 26
-               })
+           25
+           (Fight 26
               (Goto 120))))
   , ( 186
     , Chapter
@@ -1258,10 +1188,7 @@ chapters =
   , ( 237
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 30
-               })
+           (Fight 30
               (Goto 309))))
   , ( 238
     , Chapter
@@ -1290,10 +1217,7 @@ chapters =
   , ( 241
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 25
-               })
+           (Fight 25
               (Goto 21))))
   , ( 242
     , Chapter
@@ -1409,10 +1333,7 @@ chapters =
     , Chapter
         (EvadeFight
            2
-           125
-           (FightDetails
-            { _fendurance = 25
-            })
+           125 25
            (Goto 333)))
   , ( 269
     , Chapter
@@ -1420,10 +1341,7 @@ chapters =
   , ( 270
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 30
-               })
+           (Fight 30
               (Goto 33))))
   , ( 271
     , Chapter
@@ -1453,10 +1371,7 @@ chapters =
            [ (  (NoDecision (Goto 14)))
            , (
                  (NoDecision
-                    (Fight
-                       (FightDetails
-                        { _fendurance = 25
-                        })
+                    (Fight 25
                        (Goto 305))))
            ]))
   , ( 277
@@ -1483,14 +1398,8 @@ chapters =
   , ( 282
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 24
-               })
-              (Fight
-                 (FightDetails
-                  { _fendurance = 22
-                  })
+           (Fight 24
+              (Fight 22
                  (Goto 187)))))
   , ( 283
     , Chapter
@@ -1540,30 +1449,12 @@ chapters =
     , Chapter
         (EvadeFight
            0
-           88
-           (FightDetails
-            { _fendurance = 22
-            })
-           (Fight
-              (FightDetails
-               { _fendurance = 20
-               })
-              (Fight
-                 (FightDetails
-                  { _fendurance = 19
-                  })
-                 (Fight
-                    (FightDetails
-                     { _fendurance = 19
-                     })
-                    (Fight
-                       (FightDetails
-                        { _fendurance = 18
-                        })
-                       (Fight
-                          (FightDetails
-                           { _fendurance = 17
-                           })
+           88 22
+           (Fight 20
+              (Fight 19
+                 (Fight 19
+                    (Fight 18
+                       (Fight 17
                           (Goto 221))))))))
   , ( 297
     , Chapter
@@ -1573,17 +1464,9 @@ chapters =
         (EvadeFight
            0
            121
-           (FightDetails
-            { _fendurance = 23
-            })
-           (Fight
-              (FightDetails
-               { _fendurance = 21
-               })
-              (Fight
-                 (FightDetails
-                  { _fendurance = 20
-                  })
+           23
+           (Fight 21
+              (Fight 20
                  (Goto 301)))))
   , ( 299
     , Chapter
@@ -1623,10 +1506,7 @@ chapters =
   , ( 306
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 24
-               })
+           (Fight 24
               (Goto 35))))
   , ( 307
     , Chapter
@@ -1734,10 +1614,7 @@ chapters =
   , ( 326
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 25
-               })
+           (Fight 25
               (Goto 184))))
   , ( 328
     , Chapter
@@ -1763,9 +1640,7 @@ chapters =
         (EvadeFight
            0
            92
-           (FightDetails
-            { _fendurance = 30
-            })
+           30
            (Goto 183)))
   , ( 333
     , Chapter
@@ -1851,10 +1726,7 @@ chapters =
   , ( 345
     , Chapter
         (NoDecision
-           (Fight
-              (FightDetails
-               { _fendurance = 24
-               })
+           (Fight 24
               (Goto 243))))
   , ( 346
     , Chapter
@@ -1876,9 +1748,7 @@ chapters =
         (EvadeFight
            2
            125
-           (FightDetails
-            { _fendurance = 25
-            })
+           25
            (Goto 333)))
   , ( 349
     , Chapter

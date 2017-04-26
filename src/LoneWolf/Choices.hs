@@ -14,5 +14,3 @@ flattenDecision cvariable d = case d of
             d' <- lst
             (alldesc, o) <- flattenDecision cvariable d'
             return ( alldesc, o)
-
-        _ -> []

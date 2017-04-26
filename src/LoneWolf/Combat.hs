@@ -1,16 +1,13 @@
 {-# LANGUAGE RankNTypes #-}
 module LoneWolf.Combat (fight) where
 
-import LoneWolf.Chapter
 import Solver
 
 import qualified Memo
-import Lens
 
-fight :: Int -> FightDetails -> Probably Int
+fight :: Int -> Int -> Probably Int
 fight cvariable fdetails = regroup $ do
-      let ohp = fdetails ^. fendurance
-      ((php, _), p) <- fightVanillaM (cvariable ^. id) ohp
+      ((php, _), p) <- fightVanillaM cvariable  fdetails
       return (max 0 php, p)
 
 fightVanillaM :: Int -> Int -> Probably (Int, Int)
