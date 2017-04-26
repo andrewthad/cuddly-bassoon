@@ -70,7 +70,7 @@ memoState = Memo.pair Memo.bits Memo.bits
 
 
 solveLW :: [(Int, Decision)] -> Int -> Solution
-solveLW book cvariable = solve memoState step (const Unknown) (1, cvariable)
+solveLW book cvariable = solve memoState step (1, cvariable)
   where
     chapters = book
     step (cid, curvariable ) = case lookup cid chapters of
@@ -94,8 +94,6 @@ data Solution = Node { _stt  :: (Int, Int)
                                 deriving (Show, Eq, Generic)
 
 instance NFData (Solution)
-
-data Score = Lose | Win Rational | Unknown
 
 certain :: a -> Probably a
 certain a = [(a,1)]
@@ -125,17 +123,13 @@ getSolScore s = case s of
 
 solve :: Memo.Memo (Int, Int)
        -> ((Int, Int) -> Choice)
-       -> ((Int, Int) -> Score)
        -> (Int, Int)
        -> Solution
-solve memo getChoice score = go
+solve memo getChoice = go
   where
     go = memo solve'
     solve' stt =
-      case score stt of
-          Lose -> LeafLost
-          Win x -> LeafWin x stt
-          Unknown -> if null choices
+           if null choices
                       then LeafLost
                       else maximumBy (comparing getSolScore) scored
       where
