@@ -11,21 +11,12 @@ chapters =
            ]))--
   , ( 10
     , ((NoDecision
-              (Conditionally
-                 [(Goto 51), (Goto 195), (Goto 339)]))))
+              (
+                 (Goto 51)))))
   , ( 12
     , (Decisions
-           [ (
-                 (NoDecision
-                    (Conditionally
-                       [(Goto 58), (Goto 167), (Goto 329)])))
-           , (
-                 (NoDecision
-                    (Conditionally
-                       [ (Goto 58)
-                       , ( Goto 167)
-                       , ( Goto 329)
-                       ])))
+           [  (NoDecision (Goto 58))
+           ,  (NoDecision (Goto 58))
            ]))
   , ( 13
     , (NoDecision (Goto 155)))
@@ -49,11 +40,7 @@ chapters =
   , ( 19
     , (NoDecision (Goto 71)))
   , ( 25
-    , (NoDecision
-           (Conditionally
-              [ ( Goto 116)
-              , (Goto 153)
-              ])))
+    , (NoDecision ( ( Goto 116))))
   , ( 26
     , (Decisions
            [ ( NoDecision (Goto 248))
@@ -77,7 +64,7 @@ chapters =
   , ( 31
     , (NoDecision
            (
-              (Conditionally[(Goto 176), (Goto 254)]))))
+              ((Goto 176)))))
   , ( 32
     , (NoDecision ((Goto 186))))
   , ( 33
@@ -99,11 +86,9 @@ chapters =
            ]))
   , ( 36
     , (NoDecision
-           (Conditionally
-              [ (Goto 145)
-              , (Goto 210)
-              , (Goto 275)
-              ])))
+           (
+               (Goto 145)
+              )))
   , ( 37
     , (Decisions
            [ ( NoDecision ((Goto 122)))
@@ -117,13 +102,12 @@ chapters =
            ]))
   , ( 39
     , (NoDecision
-           (Conditionally
-              [(Goto 346), (Goto 156)])))
+           (
+              (Goto 346))))
   , ( 40
     , (NoDecision
            (
-              (Conditionally
-                 [(Goto 97), (Goto 242)]))))
+              ( (Goto 97)))))
   , ( 41
     , (Decisions
            [ ( NoDecision
@@ -135,7 +119,7 @@ chapters =
   , ( 43
     , (NoDecision (Goto 286)))
   , ( 45
-    , (NoDecision (Conditionally [(Goto 311), (Goto 159)])))
+    , (NoDecision (Goto 311)))
   , ( 46
     , (Decisions
            [ ( NoDecision (Goto 214))
@@ -143,8 +127,7 @@ chapters =
            ]))
   , ( 47
     , (NoDecision
-           (Conditionally
-              [(Goto 111), (Goto 307)])))
+           (Goto 111)))
   , ( 48
     , (NoDecision (Goto 268)))
   , ( 49
@@ -158,10 +141,7 @@ chapters =
            ]))
   , ( 52
     , (NoDecision
-           (Conditionally
-              [ (Goto 338)
-              , (Goto 234)
-              ])))
+           (Goto 338)))
   , ( 53
     , (Decisions
            [ ( NoDecision (Goto 321))
@@ -176,26 +156,16 @@ chapters =
     , (NoDecision (Goto 127)))
   , ( 57
     , (NoDecision
-           (Conditionally
-              [ ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              , ((Goto 282))
-              ])))
+           (
+               ((Goto 282))
+              )))
   , ( 58
     , (NoDecision (Goto 197)))
   , ( 59
     , (NoDecision
-           (Conditionally
-              [ (Goto 332)
-              , (Goto 311)
-              ])))
+           (
+               (Goto 332)
+              )))
   , ( 60
     , (NoDecision
            (Fight 11
@@ -230,11 +200,9 @@ chapters =
     , (NoDecision (Goto 306)))
   , ( 69
     , (NoDecision
-           (Conditionally
-              [ (Goto 311)
-              , (
-                    (Goto 311))
-              ])))
+           (
+               (Goto 311)
+              )))
   , ( 70
     , (NoDecision (Goto 44)))
   , ( 71
@@ -280,7 +248,7 @@ chapters =
            , ( NoDecision (Goto 189))
            ]))
   , ( 81
-    , (NoDecision (Conditionally [(Goto 260), (Goto 281)])))
+    , (NoDecision ((Goto 260))))
   , ( 82
     , (Decisions
            [ ( NoDecision (Goto 55))
@@ -328,8 +296,8 @@ chapters =
     , (NoDecision (Goto 240)))
   , ( 95
     , (NoDecision
-           (Conditionally
-              [(Goto 239), (Goto 28)])))
+           (
+              (Goto 239))))
   , ( 96
     , (NoDecision (Goto 112)))
   , ( 97
@@ -340,12 +308,12 @@ chapters =
            , ( NoDecision (Goto 115))
            ]))
   , ( 99
-    , (NoDecision (Conditionally [(Goto 326), (Goto 163)])))
+    , (NoDecision ((Goto 326))))
   , ( 160 , (NoDecision (Goto 268))) --
   , ( 174
     , (NoDecision (Goto 162)))
   , ( 175
-    , (NoDecision (Conditionally [(Goto 53), (Goto 209)])))
+    , (NoDecision ((Goto 53))))
   , ( 176
     , (Decisions
            [ (  (NoDecision (Goto 322)))
@@ -374,7 +342,7 @@ chapters =
   , ( 182
     , (NoDecision (Goto 177)))
   , ( 183
-    , (NoDecision (Conditionally [(Goto 311), (Goto 159)])))
+    , (NoDecision ((Goto 311))))
   , ( 184
     , (NoDecision (Goto 240)))
   , ( 185
@@ -417,18 +385,17 @@ chapters =
            ]))
   , ( 195
     , (NoDecision
-           (Conditionally
-              [ ((Goto 249))
-              , (Goto 50)
-              ])))
+           (
+               ((Goto 249))
+              )))
   , ( 196
     , (NoDecision
            (
-              (Conditionally
-                 [(Goto 79), (Goto 123)]))))
+              (
+                 (Goto 79)))))
   , ( 197
     , (NoDecision
-           (Conditionally [(Goto 78), (Goto 141), (Goto 247)])))
+           ((Goto 78))))
   , ( 198
     , (NoDecision
            ((Goto 138))))
@@ -443,7 +410,7 @@ chapters =
            , ( NoDecision (Goto 270))
            ]))
   , ( 201
-    , (NoDecision (Conditionally [(Goto 285), (Goto 70)])))
+    , (NoDecision ((Goto 285))))
   , ( 202
     , (NoDecision (Goto 31)))
   , ( 203
@@ -464,7 +431,7 @@ chapters =
   , ( 209
     , (NoDecision (Goto 197)))
   , ( 210
-    , (NoDecision (Conditionally [(Goto 275), (Goto 330)])))
+    , (NoDecision (Goto 275)))
   , ( 215
     , (Decisions
            [ ( NoDecision (Goto 4))
@@ -572,8 +539,7 @@ chapters =
     , (Decisions []))
   , ( 239
     , (NoDecision
-           (Conditionally
-              [(Goto 77), (Goto 28)])))
+           ((Goto 77))))
   , ( 240
     , (Decisions
            [ (
@@ -664,10 +630,7 @@ chapters =
     , (NoDecision (Goto 312)))
   , ( 265
     , (NoDecision
-           (Conditionally
-              [ (Goto 202)
-              , ((Goto 202))
-              ])))
+           (Goto 202)))
   , ( 266
     , (NoDecision
            (Goto 32)))
@@ -714,14 +677,14 @@ chapters =
            , ( NoDecision (Goto 59))
            ]))
   , ( 278
-    , (NoDecision (Conditionally [(Goto 41), (Goto 180)])))
+    , (NoDecision (Goto 41)))
   , ( 279
     , (Decisions
            [ ( NoDecision (Goto 23))
            , ( NoDecision (Goto 340))
            ]))
   , ( 280
-    , (NoDecision (Conditionally [(Goto 2), (Goto 108)])))
+    , (NoDecision ((Goto 2))))
   , ( 281
     , (NoDecision (Goto 240)))
   , ( 282
@@ -753,15 +716,7 @@ chapters =
            (Fight 21
               (Fight 20
                  (Goto 301)))))) --
-  , ( 300
-    , (NoDecision
-           (Conditionally
-              [ (Goto 224)
-              , (Goto 316)
-              , (Goto 81)
-              , (Goto 22)
-              , (Goto 99)
-              ]))) --
+  , ( 300 , (NoDecision ( (Goto 224)))) --
   , ( 312
     , (Decisions
            [ ( NoDecision (Goto 117))

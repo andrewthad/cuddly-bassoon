@@ -27,7 +27,6 @@ data Decision
 
 data ChapterOutcome
         = Fight Int ChapterOutcome
-        | Conditionally [(ChapterOutcome)]
         | Goto Int
         deriving (Show, Eq)
 
@@ -58,8 +57,6 @@ update :: Int -> ChapterOutcome -> Probably (Int, Int)
 update cvariable outcome =
   case outcome of
     Goto cid -> certain (cid, cvariable)
-    Conditionally (o:_) -> update cvariable o
-    Conditionally _ -> undefined
     Fight fd nxt -> regroup $  do
       (charendurance, _) <- fight cvariable fd
       update charendurance nxt
@@ -71,15 +68,9 @@ memoState = Memo.pair Memo.bits Memo.bits
 solveLW :: [(Int, Decision)] -> Int -> Solution
 solveLW book cvariable = solve memoState step (1, cvariable)
   where
-    chapters = book
-    step (cid, curvariable ) = case lookup cid chapters of
+    step (cid, curvariable) = case lookup cid book of
                   Nothing -> return []
-                  Just d -> do
-                      outcome <- flattenDecision curvariable d
-                      return (update curvariable outcome)
-    step _ = []
-
-
+                  Just d -> update curvariable <$>  flattenDecision curvariable d
 
 type Probably a = [(a, Rational)]
 type Choice = [(Probably (Int, Int))]
@@ -89,7 +80,6 @@ data Solution = Node
     , _outcome :: Probably (Solution)
     }
     | LeafLost
-    | LeafWin (Int, Int)
         deriving (Show, Eq, Generic)
 
 instance NFData (Solution)
