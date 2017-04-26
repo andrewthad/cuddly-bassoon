@@ -19,7 +19,7 @@ fightVanillaM = Memo.memo2 Memo.bits Memo.bits fightVanilla
 
 fightVanilla :: Int -> Int -> Probably (Int, Int)
 fightVanilla php ohp
-  | php <= 0 || ohp <= 0 = certain (max 0 php, max 0 ohp)
+  | php <= 0 || ohp <= 0 = [((max 0 php, max 0 ohp), 1)]
   | otherwise = regroup $ do
       (odmg, pdmg) <- [(9,3),(10,2),(11,2),(12,2),(14,1),(16,1),(18,0),(100,0),(100,0),(100,0)]
       fightVanillaM (php - pdmg) (ohp - odmg)
@@ -36,16 +36,11 @@ fibFight 1 = []
 fibFight x = [(x - 1), (x - 2)]
 
 solveLW :: ()
-solveLW = solve memoState step (14, 100)
+solveLW = solve memoState step (100, 100)
   where
     step (cid, hp) = map (update hp) (fibFight cid)
 
-type Probably a = [(a, Rational)]
-
-
-certain :: a -> Probably a
-certain a = [(a,1)]
-
+type Probably a = [(a, Int)]
 
 -----------------------------------------------------------------------------------
 regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => Probably a -> Probably a
@@ -57,7 +52,6 @@ regroup xs =
             then error $ "Those are expected to be equal" ++ show (s', s)
             else xs'
 ----------------------------------------------------------------------------------
-
 
 solve :: Memo.Memo (Int, Int) -> ((Int, Int) -> [[(Int, Int)]]) -> (Int, Int) -> ()
 solve memo getChoice = go
