@@ -43,10 +43,10 @@ solveLW = solve memoState step (100, 100)
 type Probably a = [(a, Int)]
 
 -----------------------------------------------------------------------------------
-regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => Probably a -> Probably a
+regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => [(a, Int)] -> [(a, Int)]
 regroup xs =
     let xs' = HM.toList $ HM.fromListWith (+) xs
-        !s' = sum (map snd xs')
+        s' = sum (map snd xs')
         s  = sum (map snd xs)
      in if s' /= s
             then error $ "Those are expected to be equal" ++ show (s', s)
