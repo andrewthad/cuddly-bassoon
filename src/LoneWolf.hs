@@ -17,7 +17,7 @@ import GHC.Generics
 import Parallel
 import qualified Data.HashMap.Strict as HM
 import qualified Memo
-
+import Control.DeepSeq
 
 data Decision
    = Decisions [Decision]
@@ -85,20 +85,18 @@ solveLW book cvariable = solve memoState step (1, cvariable)
 type Probably a = [(a, Rational)]
 type Choice = [(String, Probably (Int, Int))]
 
-data Solution = Node { _stt  :: (Int, Int)
-                                       , _score :: Rational
-                                       , _outcome :: Probably (Solution)
-                                       }
-                                | LeafLost
-                                | LeafWin Rational (Int, Int)
-                                deriving (Show, Eq, Generic)
+data Solution = Node
+    { _stt  :: (Int, Int)
+    , _outcome :: Probably (Solution)
+    }
+    | LeafLost
+    | LeafWin (Int, Int)
+        deriving (Show, Eq, Generic)
 
 instance NFData (Solution)
 
 certain :: a -> Probably a
 certain a = [(a,1)]
-
-
 
 regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => Probably a -> Probably a
 regroup xs =
@@ -109,18 +107,6 @@ regroup xs =
             then error $ "very bad" ++ show ("s'" :: String, s', "s" :: String, s)
             else xs'
 
-winStates :: Solution -> Probably (Int, Int)
-winStates s = case s of
-  LeafLost -> []
-  LeafWin _ st -> certain st
-  Node _ _ ps -> regroup $ concat $ parMap rdeepseq (\(o,p) -> fmap (*p) <$> winStates o) ps
-
-getSolScore :: Solution -> Rational
-getSolScore s = case s of
-                 LeafLost -> 0
-                 LeafWin x _ -> x
-                 Node _ x _ -> x
-
 solve :: Memo.Memo (Int, Int)
        -> ((Int, Int) -> Choice)
        -> (Int, Int)
@@ -128,13 +114,8 @@ solve :: Memo.Memo (Int, Int)
 solve memo getChoice = go
   where
     go = memo solve'
-    solve' stt =
-           if null choices
-                      then LeafLost
-                      else maximumBy (comparing getSolScore) scored
+    solve' stt = rnf scored `seq` LeafLost
       where
-        choices = getChoice stt
         scored = parMap rdeepseq scoreTree (getChoice stt)
-        scoreTree (cdesc, pstates) = let ptrees = map (\(o, p) -> (go o, p)) pstates
-                                     in Node stt (sum (map (\(o, p) -> p * getSolScore o) ptrees)) ptrees
-
+        scoreTree (_, pstates) = let ptrees = map (\(o, p) -> (go o, p)) pstates
+                                     in Node stt ptrees

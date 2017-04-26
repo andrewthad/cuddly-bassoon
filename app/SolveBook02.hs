@@ -4,6 +4,4 @@ import LoneWolf
 import LoneWolf.Book02
 
 main :: IO ()
-main = do
-    let solution = solveLW chapters 20
-    print (fromRational (_score solution) :: Double)
+main = length (show (solveLW chapters 20)) `seq` return ()
