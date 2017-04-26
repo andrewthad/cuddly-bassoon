@@ -2,7 +2,7 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module LoneWolf.Character
-    ( Endurance(..), CharacterVariable(..), CharacterConstant(..), curendurance, mkCharacter, Inventory(..)
+    ( Endurance(..), CharacterVariable(..), CharacterConstant(..), curendurance, mkCharacter
     )
     where
 
@@ -30,17 +30,17 @@ data CharacterConstant = CharacterConstant
       } deriving (Generic, Eq, Show, Read)
 
 
-newtype CharacterVariable = CharacterVariable { getCharacterVariable :: Word64 }
+newtype CharacterVariable = CharacterVariable { getCharacterVariable :: Int }
                           deriving (Generic, Eq, Bits, Hashable, NFData, Ord)
 
-mkCharacter :: Endurance -> Inventory -> CharacterVariable
-mkCharacter e i = CharacterVariable 0 & curendurance .~ e & equipment .~ i
+mkCharacter :: Endurance -> CharacterVariable
+mkCharacter (Endurance e) = CharacterVariable e
 
 instance Show CharacterVariable where
   show c = show (c ^. curendurance, c ^. equipment)
 
 curendurance :: Lens' CharacterVariable Endurance
-curendurance f (CharacterVariable w) = (\(Endurance ne) -> CharacterVariable ((w .&. 0xff00ffffffffffff) .|. (fromIntegral ne `shiftL` 48))) <$> f (fromIntegral ((w `shiftR` 48) .&. 0xff))
+curendurance f (CharacterVariable w) = (CharacterVariable . getEndurance) <$> f (Endurance w)
 {-# INLINE curendurance #-}
 
 equipment :: Lens' CharacterVariable Inventory

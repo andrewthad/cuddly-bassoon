@@ -14,12 +14,12 @@ startConstant :: CharacterConstant
 startConstant = CharacterConstant 20
 
 startVariable :: CharacterVariable
-startVariable = mkCharacter 20 (Inventory 0)
+startVariable = mkCharacter 20
 
 memoState :: Memo.Memo NextStep
 memoState = Memo.wrap fromWord64 toWord64 (Memo.pair Memo.bits Memo.bits)
 
-toWord64 :: NextStep -> (Word16, Word64)
+toWord64 :: NextStep -> (Word16, Int)
 toWord64 s = case s of
                  HasLost -> (0, 0)
                  HasWon cvariable -> toWord64 (NewChapter 0 cvariable)
@@ -27,7 +27,7 @@ toWord64 s = case s of
                     let cidb16 = fromIntegral cid
                     in  (cidb16, cvalue)
 
-fromWord64 :: (Word16, Word64) -> NextStep
+fromWord64 :: (Word16, Int) -> NextStep
 fromWord64 (0, 0) = HasLost
 fromWord64 (cid16, cvalue) =
     let cvariable = CharacterVariable cvalue
