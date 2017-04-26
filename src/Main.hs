@@ -1,7 +1,7 @@
 {-# LANGUAGE RankNTypes #-}
 {-# LANGUAGE BangPatterns #-}
 
-module LoneWolf where
+module Main where
 
 import Data.Hashable
 import Parallel
@@ -40,12 +40,22 @@ update i outcome =
 memoState :: Memo.Memo (Int, Int)
 memoState = Memo.pair Memo.bits Memo.bits
 
-solveLW :: [(Int, [ChapterOutcome])] -> Int -> ()
-solveLW book i = solve memoState step (1, i)
+{-
+nextState z i = case lookup i z of
+    Nothing -> []
+    Just x -> x
+-}
+
+fibFight :: Int -> [ChapterOutcome]
+fibFight 0 = []
+fibFight 1 = []
+fibFight x = [Fight x (Goto (x - 1)), Fight x (Goto (x - 2))]
+
+
+solveLW :: ()
+solveLW = solve memoState step (14, 100)
   where
-    step (cid, hp) = case lookup cid book of
-                  Nothing -> []
-                  Just d -> map (update hp) d
+    step (cid, hp) = map (update hp) (fibFight cid)
 
 type Probably a = [(a, Rational)]
 
@@ -73,3 +83,8 @@ solve memo getChoice = go
     solve' stt = rnf scored
       where
         scored = parMap rdeepseq (map go) (getChoice stt)
+
+
+
+main :: IO ()
+main = length (show solveLW) `seq` return ()

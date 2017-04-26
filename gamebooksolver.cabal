@@ -26,11 +26,9 @@ cabal-version:       >=1.10
 
 executable gamebooksolver-solvebook02
   hs-source-dirs:      src
-  main-is:             SolveBook02.hs
+  main-is:             Main.hs
   ghc-options:         -threaded -rtsopts -Wall -with-rtsopts "-M16G -N8" -O0 -funbox-strict-fields
-  other-modules:       Book02
-                       LoneWolf
-                       Parallel
+  other-modules:       Parallel
                        Memo
   build-depends:       base
                      , unordered-containers
