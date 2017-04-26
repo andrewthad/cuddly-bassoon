@@ -82,12 +82,12 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
+             ,
                  (NoDecision
                     (Randomly
                        [(1 % 5, Goto 58), (3 % 10, Goto 167), (1 % 2, Goto 329)])))
            , ( ""
-             , 
+             ,
                  (NoDecision
                     (Randomly
                        [ (2 % 5, Goto 58)
@@ -125,8 +125,7 @@ chapters =
   , ( 17
     , Chapter
         (NoDecision
-           (Simple
-              [DamagePlayer (Endurance {getEndurance = 5})]
+           (
               (Fight
                  (FightDetails
                   { _fendurance = Endurance {getEndurance = 30}
@@ -152,16 +151,16 @@ chapters =
     , Chapter
         (NoDecision
            (Randomly
-              [ (1 % 10, Simple [GainItem Gold 2] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 5] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 8] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 11] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 14] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 17] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 20] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 23] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 26] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 29] (Goto 314))
+              [ (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
               ])))
   , ( 22
     , Chapter
@@ -199,7 +198,7 @@ chapters =
   , ( 27
     , Chapter
         (NoDecision
-           (Simple [HealPlayer (Endurance {getEndurance = 2})] (Goto 312))))
+           ((Goto 312))))
   , ( 28
     , Chapter
         (Decisions
@@ -211,7 +210,7 @@ chapters =
   , ( 29
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 2})] (Goto 222))))
+           ((Goto 222))))
   , ( 30
     , Chapter
         (NoDecision
@@ -223,12 +222,11 @@ chapters =
   , ( 31
     , Chapter
         (NoDecision
-           (Simple
-              [HealPlayer (Endurance {getEndurance = 6})]
+           (
               (Randomly [(1 % 2, Goto 176), (1 % 2, Goto 254)]))))
   , ( 32
     , Chapter
-        (NoDecision (Simple [MustEat Hunt] (Goto 186))))
+        (NoDecision ((Goto 186))))
   , ( 33
     , Chapter
         (Decisions
@@ -250,10 +248,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 13)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 155)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 293)))
            ]))
   , ( 36
@@ -268,11 +266,11 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 122)))
+             , NoDecision ((Goto 122)))
            , ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 323)))
+             , NoDecision ((Goto 323)))
            , ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 257)))
+             , NoDecision ((Goto 257)))
            ]))
   , ( 38
     , Chapter
@@ -290,8 +288,7 @@ chapters =
   , ( 40
     , Chapter
         (NoDecision
-           (Simple
-              [GainItem PotentPotion 1, FullHeal]
+           (
               (Conditionally
                  [(Goto 97), (Goto 242)]))))
   , ( 41
@@ -299,7 +296,7 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple [HealPlayer (Endurance {getEndurance = 1})] (Goto 194)))
+                 ((Goto 194)))
            , ( ""
              , NoDecision (Goto 251))
            ]))
@@ -381,16 +378,16 @@ chapters =
     , Chapter
         (NoDecision
            (Randomly
-              [ (1 % 10, Simple [LoseItem Gold 1] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 2] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 3] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 4] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 5] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 6] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 7] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 8] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 9] (Goto 282))
-              , (1 % 10, Simple [LoseItem Gold 10] (Goto 282))
+              [ (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
+              , (1 % 10, (Goto 282))
               ])))
   , ( 58
     , Chapter
@@ -419,10 +416,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 264)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 188)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 201)))
            ]))
   , ( 64
@@ -431,10 +428,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 229)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 134)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 208)))
            ]))
   , ( 65
@@ -459,8 +456,7 @@ chapters =
         (NoDecision
            (Conditionally
               [ (Goto 311)
-              , ( Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+              , (
                     (Goto 311))
               ])))
   , ( 70
@@ -481,13 +477,13 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple [HealPlayer (Endurance {getEndurance = 1})] (Goto 226)))
+                 ((Goto 226)))
            , ( ""
              , NoDecision
-                 (Simple [HealPlayer (Endurance {getEndurance = 1})] (Goto 56)))
+                 ((Goto 56)))
            , ( ""
              , NoDecision
-                 (Simple [HealPlayer (Endurance {getEndurance = 1})] (Goto 276)))
+                 ((Goto 276)))
            ]))
   , ( 73
     , Chapter
@@ -511,17 +507,11 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [ DamagePlayer (Endurance {getEndurance = 1})
-                    , LoseItem ChainMail 99
-                    ]
+                 (
                     (Goto 278)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [ DamagePlayer (Endurance {getEndurance = 1})
-                    , LoseItem ChainMail 99
-                    ]
+                 (
                     (Goto 337)))
            ]))
   , ( 79
@@ -706,7 +696,7 @@ chapters =
            , ( ""
              ,   (NoDecision (Goto 64)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 164)))
            ]))
   , ( 103
@@ -714,7 +704,7 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple [HealPlayer (Endurance {getEndurance = 3})] (Goto 249)))
+                 ((Goto 249)))
            , ("", CanTake Laumspur 1 (NoDecision (Goto 249)))
            ]))
   , ( 104
@@ -747,8 +737,7 @@ chapters =
   , ( 108
     , Chapter
         (NoDecision
-           (Simple
-              [DamagePlayer (Endurance {getEndurance = 2})]
+           (
               (Conditionally
                  [(Goto 343), (Goto 168)]))))
   , ( 109
@@ -795,26 +784,26 @@ chapters =
     , Chapter
         (NoDecision
            (Randomly
-              [ (1 % 10, Simple [GainItem Gold 5] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 6] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 7] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 8] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 9] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 10] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 11] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 12] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 13] (Goto 314))
-              , (1 % 10, Simple [GainItem Gold 14] (Goto 314))
+              [ (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
+              , (1 % 10, (Goto 314))
               ])))
   , ( 117
     , Chapter
         (Decisions
            [ ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 3] (Goto 37))))
+             ,
+                 (NoDecision ((Goto 37))))
            , ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 1] (Goto 148))))
+             ,
+                 (NoDecision ((Goto 148))))
            , ( ""
              , NoDecision (Goto 292))
            ]))
@@ -824,10 +813,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 279)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 23)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 340)))
            ]))
   , ( 119
@@ -862,9 +851,9 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 217)))
+             , NoDecision ((Goto 217)))
            , ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 143)))
+             , NoDecision ((Goto 143)))
            ]))
   , ( 128
     , Chapter
@@ -923,7 +912,7 @@ chapters =
         (NoDecision (Goto 244)))
   , ( 136
     , Chapter
-        (NoDecision (Simple [LoseItem Gold 20] (Goto 10))))
+        (NoDecision ((Goto 10))))
   , ( 137
     , Chapter
         (Decisions
@@ -958,17 +947,11 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [ DamagePlayer (Endurance {getEndurance = 2})
-                    , LoseItem ChainMail 99
-                    ]
+                 (
                     (Goto 278)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [ DamagePlayer (Endurance {getEndurance = 2})
-                    , LoseItem ChainMail 99
-                    ]
+                 (
                     (Goto 337)))
            ]))
   , ( 143
@@ -984,11 +967,11 @@ chapters =
         (CanTake
            Meal
            2
-           (NoDecision (Simple [LoseItemKind [PouchSlot]] (Goto 349)))))
+           (NoDecision ((Goto 349)))))
   , ( 145
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 5})] (Goto 200))))
+           ((Goto 200))))
   , ( 146
     , Chapter
         (NoDecision
@@ -1004,11 +987,11 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 122)))
+             , NoDecision ((Goto 122)))
            , ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 323)))
+             , NoDecision ((Goto 323)))
            , ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 257)))
+             , NoDecision ((Goto 257)))
            ]))
   , ( 149
     , Chapter
@@ -1022,9 +1005,9 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 261)))
+             , NoDecision ((Goto 261)))
            , ( ""
-             , NoDecision (Simple [MustEat Hunt] (Goto 334)))
+             , NoDecision ((Goto 334)))
            ]))
   , ( 151
     , Chapter
@@ -1046,13 +1029,11 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+                 (
                     (Goto 308)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+                 (
                     (Goto 197)))
            ]))
   , ( 155
@@ -1105,15 +1086,15 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 172)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 52)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 256)))
            ]))
   , ( 165
     , Chapter
-        (NoDecision (Simple [LoseItem SealHammerdalVol2 1] (Goto 186))))
+        (NoDecision ((Goto 186))))
   , ( 166
     , Chapter
         (Decisions
@@ -1129,7 +1110,7 @@ chapters =
     , Chapter
         (NoDecision
            (Conditionally
-              [ (Simple [LoseItem Gold 1] (Goto 314))
+              [ ((Goto 314))
               , (Goto 25)
               ])))
   , ( 169
@@ -1174,10 +1155,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 322)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 45)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 277)))
            ]))
   , ( 177
@@ -1267,13 +1248,11 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+                 (
                     (Goto 162)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+                 (
                     (Goto 244)))
            ]))
   , ( 190
@@ -1290,45 +1269,32 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [ LoseItemKind
-                        [PouchSlot, BackpackSlot, WeaponSlot, SpecialSlot]
-                    ]
+                 (
                     (Goto 215)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [ LoseItemKind
-                        [PouchSlot, BackpackSlot, WeaponSlot, SpecialSlot]
-                    ]
+                 (
                     (Goto 303)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [ LoseItemKind
-                        [PouchSlot, BackpackSlot, WeaponSlot, SpecialSlot]
-                    ]
+                 (
                     (Goto 129)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [ LoseItemKind
-                        [PouchSlot, BackpackSlot, WeaponSlot, SpecialSlot]
-                    ]
+                 (
                     (Goto 86)))
            ]))
   , ( 195
     , Chapter
         (NoDecision
            (Conditionally
-              [ (Simple [LoseItem Gold 1] (Goto 249))
+              [ ((Goto 249))
               , (Goto 50)
               ])))
   , ( 196
     , Chapter
         (NoDecision
-           (Simple
-              [LoseItem SealHammerdalVol2 1]
+           (
               (Conditionally
                  [(Goto 79), (Goto 123)]))))
   , ( 197
@@ -1338,7 +1304,7 @@ chapters =
   , ( 198
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 1})] (Goto 138))))
+           ((Goto 138))))
   , ( 199
     , Chapter
         (NoDecision (Goto 143)))
@@ -1415,8 +1381,8 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 1] (Goto 199))))
+             ,
+                 (NoDecision ((Goto 199))))
            , ( ""
              , NoDecision (Goto 143))
            ]))
@@ -1430,7 +1396,7 @@ chapters =
   , ( 219
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 3})] (Goto 312))))
+           ( (Goto 312))))
   , ( 220
     , Chapter
         (CanTake Gold 23 (NoDecision (Goto 33))))
@@ -1462,8 +1428,8 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 2] (Goto 56))))
+             ,
+                 (NoDecision ((Goto 56))))
            , ( ""
              , NoDecision (Goto 276))
            ]))
@@ -1507,19 +1473,19 @@ chapters =
                  1
                  (Decisions
                     [ ( ""
-                      , 
+                      ,
                           (NoDecision (Goto 182)))
                     , ( ""
-                      , 
+                      ,
                           (NoDecision (Goto 177)))
                     , ( ""
-                      , 
+                      ,
                           (NoDecision (Goto 24)))
                     , ( ""
-                      , 
+                      ,
                           (NoDecision (Goto 253)))
                     , ( ""
-                      , 
+                      ,
                           (NoDecision (Goto 319)))
                     ])))))
   , ( 232
@@ -1538,11 +1504,11 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 3] (Goto 37))))
+             ,
+                 (NoDecision ((Goto 37))))
            , ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 1] (Goto 148))))
+             ,
+                 (NoDecision ((Goto 148))))
            , ( ""
              , NoDecision (Goto 292))
            ]))
@@ -1583,24 +1549,24 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
+             ,
                  (Decisions
                     [ ( ""
-                      , NoDecision (Simple [FullHeal] (Goto 29)))
+                      , NoDecision ((Goto 29)))
                     , ( ""
-                      , NoDecision (Simple [FullHeal] (Goto 236)))
+                      , NoDecision ((Goto 236)))
                     , ( ""
-                      , NoDecision (Simple [FullHeal] (Goto 101)))
+                      , NoDecision ((Goto 101)))
                     ]))
            , ( ""
-             , 
+             ,
                  (Decisions
                     [ ( ""
-                      , NoDecision (Simple [HalfHeal] (Goto 29)))
+                      , NoDecision ((Goto 29)))
                     , ( ""
-                      , NoDecision (Simple [HalfHeal] (Goto 236)))
+                      , NoDecision ((Goto 236)))
                     , ( ""
-                      , NoDecision (Simple [HalfHeal] (Goto 101)))
+                      , NoDecision ((Goto 101)))
                     ]))
            ]))
   , ( 241
@@ -1625,7 +1591,7 @@ chapters =
            , ( ""
              ,  (NoDecision (Goto 47)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 207)))
            ]))
   , ( 245
@@ -1672,10 +1638,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 344)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 69)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 183)))
            ]))
   , ( 255
@@ -1698,10 +1664,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 272)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 17)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 5)))
            ]))
   , ( 259
@@ -1741,7 +1707,7 @@ chapters =
         (NoDecision
            (Conditionally
               [ (Goto 202)
-              , (Simple [LoseItem Gold 6] (Goto 202))
+              , ((Goto 202))
               ])))
   , ( 266
     , Chapter
@@ -1835,10 +1801,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 151)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 157)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 65)))
            ]))
   , ( 272
@@ -1865,7 +1831,7 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 14)))
            , ( ""
-             , 
+             ,
                  (NoDecision
                     (Fight
                        (FightDetails
@@ -1936,7 +1902,7 @@ chapters =
                              (Canbuy (Weapon Sword) 4 (NoDecision (Goto 245)))))))))))
   , ( 284
     , Chapter
-        (NoDecision (Simple [MustEat Hunt] (Goto 9))))
+        (NoDecision ((Goto 9))))
   , ( 285
     , Chapter
         (NoDecision (Goto 312)))
@@ -1954,8 +1920,7 @@ chapters =
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [LoseItem SealHammerdalVol2 1, GainItem Gold 40]
+                 (
                     (Goto 165)))
            , ( ""
              , NoDecision (Goto 186))
@@ -2031,9 +1996,9 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , NoDecision (Simple [LoseItem (Weapon MagicSpear) 1] (Goto 118)))
+             , NoDecision ((Goto 118)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 102)))
            ]))
   , ( 300
@@ -2113,7 +2078,7 @@ chapters =
   , ( 313
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 4})] (Goto 349))))
+           ((Goto 349))))
   , ( 314
     , Chapter
         (Decisions
@@ -2122,20 +2087,20 @@ chapters =
            , ( ""
              ,  (NoDecision (Goto 36)))
            , ( ""
-             , 
-                 (NoDecision (Simple [MustEat NoHunt] (Goto 178))))
+             ,
+                 (NoDecision ((Goto 178))))
            ]))
   , ( 315
     , Chapter
         (Decisions
            [ ( ""
-             , 
+             ,
                  (NoDecision (Goto 287)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 190)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 175)))
            ]))
   , ( 316
@@ -2159,25 +2124,23 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
+             ,
                  (Decisions
                     [ ( ""
-                      , NoDecision (Simple [LoseItem Meal 1] (Goto 12)))
+                      , NoDecision ((Goto 12)))
                     , ( ""
-                      , NoDecision (Simple [LoseItem Meal 1] (Goto 197)))
+                      , NoDecision ((Goto 197)))
                     ]))
            , ( ""
-             , 
+             ,
                  (Decisions
                     [ ( ""
                       , NoDecision
-                          (Simple
-                             [DamagePlayer (Endurance {getEndurance = 2})]
+                          (
                              (Goto 12)))
                     , ( ""
                       , NoDecision
-                          (Simple
-                             [DamagePlayer (Endurance {getEndurance = 2})]
+                          (
                              (Goto 197)))
                     ]))
            ]))
@@ -2230,7 +2193,7 @@ chapters =
            , ( ""
              ,  (NoDecision (Goto 73)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 267)))
            ]))
   , ( 329
@@ -2239,7 +2202,7 @@ chapters =
   , ( 330
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 5})] (Goto 200))))
+           ((Goto 200))))
   , ( 331
     , Chapter
         (CanTake
@@ -2272,10 +2235,10 @@ chapters =
            [ ( ""
              ,  (NoDecision (Goto 98)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 115)))
            , ( ""
-             , 
+             ,
                  (NoDecision (Goto 291)))
            ]))
   , ( 335
@@ -2298,37 +2261,35 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
+             ,
                  (NoDecision
-                    (Simple [LoseItemKind [BackpackSlot, WeaponSlot]] (Goto 139))))
+                    ((Goto 139))))
            , ( ""
-             , 
+             ,
                  (NoDecision
-                    (Simple [LoseItemKind [BackpackSlot, WeaponSlot]] (Goto 228))))
+                    ((Goto 228))))
            , ( ""
-             , 
+             ,
                  (NoDecision
-                    (Simple [LoseItemKind [BackpackSlot, WeaponSlot]] (Goto 171))))
+                    ((Goto 171))))
            ]))
   , ( 338
     , Chapter
         (Decisions
            [ ( ""
              , NoDecision
-                 (Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+                 (
                     (Goto 269)))
            , ( ""
              , NoDecision
-                 (Simple
-                    [DamagePlayer (Endurance {getEndurance = 2})]
+                 (
                     (Goto 349)))
            ]))
   , ( 339
     , Chapter
         (NoDecision
            (Conditionally
-              [ ( Simple [LoseItem Gold 1] (Goto 249))
+              [ ( (Goto 249))
               , (Goto 50)
               ])))
   , ( 340
@@ -2346,11 +2307,11 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 1] (Goto 72))))
+             ,
+                 (NoDecision ((Goto 72))))
            , ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 2] (Goto 56))))
+             ,
+                 (NoDecision ((Goto 56))))
            , ( ""
              , NoDecision (Goto 226))
            ]))
@@ -2372,20 +2333,19 @@ chapters =
     , Chapter
         (Decisions
            [ ( ""
-             , 
-                 (NoDecision (Simple [LoseItem Gold 2] (Goto 280))))
+             ,
+                 (NoDecision ((Goto 280))))
            , ( ""
-             , 
+             ,
                  (NoDecision
-                    (Simple
-                       [LoseItem Gold 1]
-                       (Simple [MustEat NoHunt] (Goto 280)))))
-           , ("", NoDecision (Simple [MustEat NoHunt] (Goto 205)))
+                    (
+                       ((Goto 280)))))
+           , ("", NoDecision ((Goto 205)))
            ]))
   , ( 347
     , Chapter
         (NoDecision
-           (Simple [DamagePlayer (Endurance {getEndurance = 1})] (Goto 150))))
+           ( (Goto 150))))
   , ( 348
     , Chapter
         (EvadeFight

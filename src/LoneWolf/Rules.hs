@@ -31,7 +31,6 @@ update cconstant cvariable outcome =
     Goto cid -> certain (NewChapter cid cvariable)
     GameLost -> certain HasLost
     GameWon -> certain (HasWon cvariable)
-    Simple _ nxt -> update cconstant cvariable nxt
     Conditionally (o:_) -> update cconstant cvariable o
     Conditionally _ -> undefined
     Randomly rands -> regroup $ do

@@ -41,26 +41,10 @@ data ChapterOutcome
         = Fight FightDetails ChapterOutcome
         | Randomly [(Proba, ChapterOutcome)]
         | Conditionally [(ChapterOutcome)]
-        | Simple [SimpleOutcome] ChapterOutcome
         | Goto ChapterId
         | GameLost
         | GameWon
         deriving (Show, Eq)
-
-data SimpleOutcome
-        = DamagePlayer Endurance
-        | HealPlayer Endurance
-        | FullHeal
-        | HalfHeal
-        | GainItem Item Int
-        | LoseItem Item Int
-        | LoseItemKind [Slot]
-        | MustEat CanHunt
-        deriving (Show, Eq)
-
-
-data CanHunt = Hunt | NoHunt
-             deriving (Show, Eq)
 
 data FightDetails = FightDetails { _fendurance   :: Endurance } deriving (Show, Eq)
 
