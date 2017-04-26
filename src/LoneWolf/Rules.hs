@@ -27,8 +27,6 @@ update :: Int -> ChapterOutcome -> Probably NextStep
 update cvariable outcome =
   case outcome of
     Goto cid -> certain (NewChapter cid cvariable)
-    GameLost -> certain HasLost
-    GameWon -> certain (HasWon cvariable)
     Conditionally (o:_) -> update cvariable o
     Conditionally _ -> undefined
     Fight fd nxt -> regroup $  do

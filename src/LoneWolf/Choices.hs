@@ -7,9 +7,7 @@ import LoneWolf.Chapter (Decision(..), ChapterOutcome(..))
 
 flattenDecision :: Int -> Decision -> [([String], ChapterOutcome)]
 flattenDecision cvariable d = case d of
-        AfterCombat nxt   -> flattenDecision cvariable nxt
         NoDecision o -> [([], o)]
-        EvadeFight _ _ fdetails co -> [ ([], Fight fdetails co) ]
         Decisions lst -> do
             d' <- lst
             (alldesc, o) <- flattenDecision cvariable d'

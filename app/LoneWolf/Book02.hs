@@ -13,8 +13,6 @@ chapters =
     , ((NoDecision
               (Conditionally
                  [(Goto 51), (Goto 195), (Goto 339)]))))
-  , ( 11
-    , (NoDecision GameLost))
   , ( 12
     , (Decisions
            [ (
@@ -136,8 +134,6 @@ chapters =
     , (NoDecision (Goto 168)))
   , ( 43
     , (NoDecision (Goto 286)))
-  , ( 44
-    , (NoDecision GameLost))
   , ( 45
     , (NoDecision (Conditionally [(Goto 311), (Goto 159)])))
   , ( 46
@@ -171,8 +167,6 @@ chapters =
            [ ( NoDecision (Goto 321))
            , ( NoDecision (Goto 154))
            ]))
-  , ( 54
-    , (NoDecision GameLost))
   , ( 55
     ,    (Decisions
               [ ( NoDecision (Goto 347))
@@ -307,8 +301,6 @@ chapters =
                  , ( NoDecision (Goto 303))
                  , ( NoDecision (Goto 129))
                  ]))))
-  , ( 87
-    , (NoDecision GameLost))
   , ( 88
     , (Decisions
            [ (  (NoDecision (Goto 179)))
@@ -404,8 +396,6 @@ chapters =
                  (
                     (Goto 244)))
            ]))
-  , ( 190
-    , (NoDecision GameLost))
   , ( 192
     , (NoDecision (Goto 32)))
   , ( 193
@@ -475,12 +465,6 @@ chapters =
     , (NoDecision (Goto 197)))
   , ( 210
     , (NoDecision (Conditionally [(Goto 275), (Goto 330)])))
-  , ( 212
-    , (NoDecision GameLost))
-  , ( 213
-    , (NoDecision GameLost))
-  , ( 214
-    , (NoDecision GameLost))
   , ( 215
     , (Decisions
            [ ( NoDecision (Goto 4))
@@ -572,8 +556,6 @@ chapters =
                  (NoDecision ((Goto 148))))
            , ( NoDecision (Goto 292))
            ]))
-  , ( 234
-    , (NoDecision GameLost))
   , ( 235
     , (
            (Decisions
@@ -627,10 +609,6 @@ chapters =
            [ ( NoDecision (Goto 266))
            , ( NoDecision (Goto 310))
            ]))
-  , ( 247
-    , (NoDecision GameLost))
-  , ( 248
-    , (NoDecision GameLost))
   , ( 249
     , (NoDecision (Goto 39)))
   , ( 250
@@ -722,8 +700,6 @@ chapters =
   , ( 274
     , ((
               ((NoDecision (Goto 132))))))
-  , ( 275
-    , (NoDecision GameLost))
   , ( 276
     , (Decisions
            [ (  (NoDecision (Goto 14)))
