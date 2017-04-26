@@ -8,7 +8,6 @@ import LoneWolf.Chapter
 import LoneWolf.Combat
 import Solver
 
-import Lens
 import GHC.Generics
 import Data.Hashable
 

@@ -13,7 +13,6 @@ import Data.Hashable
 import qualified Data.HashMap.Strict as HM
 import Parallel
 import GHC.Generics
-import Control.DeepSeq
 
 type Proba = Rational
 type Probably a = [(a, Proba)]

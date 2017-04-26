@@ -3,74 +3,12 @@
 module Parallel
     (NFData, parMap, rdeepseq) where
 
---import Data.Traversable
 import Control.Monad
-import Data.Ratio
 import GHC.Exts
-import Data.Word
-
-import GHC.Generics
 import Control.DeepSeq
-
 
 infixl 0 `using`
 
-{-
-class NFData a where
-    rnf :: a -> ()
-
-    default rnf :: (Generic a, GNFData (Rep a)) => a -> ()
-    rnf = grnf . from
-
-
-class GNFData f where
-  grnf :: f a -> ()
-
-instance GNFData U1 where
-  grnf U1 = ()
-
-instance NFData a => GNFData (K1 i a) where
-  grnf = rnf . unK1
-  {-# INLINEABLE grnf #-}
-
-instance GNFData a => GNFData (M1 i c a) where
-  grnf = grnf . unM1
-  {-# INLINEABLE grnf #-}
-
-instance (GNFData a, GNFData b) => GNFData (a :*: b) where
-  grnf (x :*: y) = grnf x `seq` grnf y
-  {-# INLINEABLE grnf #-}
-
-instance (GNFData a, GNFData b) => GNFData (a :+: b) where
-  grnf (L1 x) = grnf x
-  grnf (R1 x) = grnf x
-  {-# INLINEABLE grnf #-}
-
-
-
-
-instance NFData Int      where rnf !_ = ()
-instance NFData Word     where rnf !_ = ()
-instance NFData Integer  where rnf !_ = ()
-instance NFData Word64   where rnf !_ = ()
-
-instance NFData Char     where rnf !_ = ()
-instance NFData Bool     where rnf !_ = ()
-instance NFData ()       where rnf !_ = ()
-
-
-instance NFData a => NFData (Ratio a) where
-  rnf !_ = ()
-
-
-instance (NFData a, NFData b) => NFData (a,b) where
-  rnf (x,y) = rnf x `seq` rnf y
-
-
-instance NFData a => NFData [a] where
-    rnf [] = ()
-    rnf (x:xs) = rnf x `seq` rnf xs
--}
 
 type Strategy a = a -> Eval a
 
