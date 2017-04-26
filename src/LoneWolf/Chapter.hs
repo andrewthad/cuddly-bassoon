@@ -21,7 +21,7 @@ data Chapter = Chapter { _pchoice :: Decision
 
 
 data Decision
-   = Decisions [(String, Decision)]
+   = Decisions [Decision]
    | CanTake Item Int Decision
    | Canbuy Item Price Decision
    | Cansell Item Price Decision

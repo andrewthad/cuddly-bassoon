@@ -12,9 +12,9 @@ flattenDecision cconstant cvariable d = case d of
         NoDecision o -> [([], o)]
         EvadeFight _ _ fdetails co -> [ ([], Fight fdetails co) ]
         Decisions lst -> do
-            (desc, d') <- lst
+            d' <- lst
             (alldesc, o) <- flattenDecision cconstant cvariable d'
-            return (desc : alldesc, o)
+            return ( alldesc, o)
         CanTake _ _ nxt -> flattenDecision cconstant cvariable nxt
 
         _ -> []
