@@ -29,7 +29,7 @@ solveLW book cvariable = solve memoState step getScore (NewChapter 1 cvariable)
   where
     chapters = book
     step (NewChapter cid curvariable ) = case lookup cid chapters of
-                  Nothing -> error ("Unknown chapter: " ++ show cid)
+                  Nothing -> return ("", [])
                   Just (Chapter  d) -> do
                       (desc, outcome) <- flattenDecision curvariable d
                       return (unwords desc, update curvariable outcome)

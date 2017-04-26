@@ -468,26 +468,13 @@ chapters =
            ]))
   , ( 90
     , Chapter
-        (EvadeFight
-           0
-           132
-           16
+        (NoDecision (Fight 16
            (Fight 9
               (Fight 14
                  (Fight 8
                     (Fight 17
-                       (Goto 274)))))))
-  , ( 91
-    , Chapter
-        (Decisions
-           [ ( ( (NoDecision (Goto 245))))
-           , ( ( (NoDecision (Goto 245))))
-           , ( ( (NoDecision (Goto 245))))
-           , ( ( (NoDecision (Goto 245))))
-           , ( ( (NoDecision (Goto 245))))
-           , ( ( (NoDecision (Goto 245))))
-           , ( ( (NoDecision (Goto 245))))
-           ]))
+                       (Goto 274))))))))
+  , ( 91 , Chapter (Decisions []))
   , ( 92
     , Chapter
         (NoDecision (Goto 183)))
@@ -517,158 +504,6 @@ chapters =
   , ( 99
     , Chapter
         (NoDecision (Conditionally [(Goto 326), (Goto 163)])))
-  , ( 100
-    , Chapter
-        (Decisions
-           [ ( NoDecision (Goto 30))
-           , ( NoDecision (Goto 267))
-           ]))
-  , ( 101
-    , Chapter
-        (NoDecision (Goto 222)))
-  , ( 102
-    , Chapter
-        (Decisions
-           [ (   (NoDecision (Goto 325)))
-           , (   (NoDecision (Goto 64)))
-           , (
-                 (NoDecision (Goto 164)))
-           ]))
-  , ( 103
-    , Chapter
-        (Decisions
-           [ ( NoDecision
-                 ((Goto 249)))
-           , (  (NoDecision (Goto 249)))
-           ]))
-  , ( 104
-    , Chapter
-        (Decisions
-           [ ( NoDecision (Goto 231))
-           , ( NoDecision (Goto 177))
-           ]))
-  , ( 105
-    , Chapter
-        (NoDecision (Conditionally [(Goto 286), (Goto 120)])))
-  , ( 106
-    , Chapter
-        ((NoDecision
-              (Fight 30
-                 (Goto 320)))))
-  , ( 107
-    , Chapter
-        (NoDecision
-           (Conditionally
-              [(Goto 74), (Goto 294)])))
-  , ( 108
-    , Chapter
-        (NoDecision
-           (
-              (Conditionally
-                 [(Goto 343), (Goto 168)]))))
-  , ( 109
-    , Chapter
-        (NoDecision (Goto 120)))
-  , ( 110
-    , Chapter
-        (EvadeFight
-           0
-           65
-           22
-           (Goto 331)))
-  , ( 111
-    , Chapter
-        (NoDecision (Goto 265)))
-  , ( 112
-    , Chapter
-        (NoDecision (Goto 230)))
-  , ( 113
-    , Chapter
-        (Decisions
-           [ ( NoDecision (Goto 73))
-           , ( NoDecision (Goto 267))
-           ]))
-  , ( 114
-    , Chapter
-        (NoDecision
-           (Conditionally [(Goto 206), (Goto 63), (Goto 8)])))
-  , ( 115
-    , Chapter
-        (Decisions
-           [ ( NoDecision (Goto 80))
-           , ( NoDecision (Goto 324))
-           , ( NoDecision (Goto 162))
-           ]))
-  , ( 116
-    , Chapter
-        (NoDecision
-           (Conditionally
-              [ ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              , ((Goto 314))
-              ])))
-  , ( 117
-    , Chapter
-        (Decisions
-           [ (
-                 (NoDecision ((Goto 37))))
-           , (
-                 (NoDecision ((Goto 148))))
-           , ( NoDecision (Goto 292))
-           ]))
-  , ( 118
-    , Chapter
-        (Decisions
-           [ (  (NoDecision (Goto 279)))
-           , (
-                 (NoDecision (Goto 23)))
-           , (
-                 (NoDecision (Goto 340)))
-           ]))
-  , ( 119
-    , Chapter
-        (NoDecision (Goto 240)))
-  , ( 120
-    , Chapter
-        (NoDecision (Goto 225)))
-  , ( 121
-    , Chapter
-        (NoDecision (Goto 186)))
-  , ( 122
-    , Chapter
-        (NoDecision
-           (Conditionally
-              [ (Goto 96)
-              , (Conditionally [(Goto 46), (Goto 112)])
-              ])))
-  , ( 123
-    , Chapter
-        ( (NoDecision (Goto 40))))
-  , ( 124
-    , Chapter
-        (
-           ( ( (NoDecision (Goto 33))))))
-  , ( 125
-    , Chapter
-        (NoDecision (Goto 300)))
-  , ( 127
-    , Chapter
-        (Decisions
-           [ ( NoDecision ((Goto 217)))
-           , ( NoDecision ((Goto 143)))
-           ]))
-  , ( 128
-    , Chapter
-        (NoDecision
-           (Fight 19
-              (Goto 237))))
   , ( 129
     , Chapter
         (NoDecision (Goto 4)))
@@ -677,13 +512,10 @@ chapters =
         (NoDecision (Goto 314)))
   , ( 131
     , Chapter
-        (EvadeFight
-           0
-           121
-           23
+        (NoDecision (Fight 23
            (Fight 21
               (Fight 20
-                 (Goto 301)))))
+                 (Goto 301))))))
   , ( 132
     , Chapter
         (           (Decisions
@@ -808,11 +640,8 @@ chapters =
         (NoDecision (Goto 213)))
   , ( 157
     , Chapter
-        (EvadeFight
-           0
-           65
-           22
-           (Goto 331)))
+        (NoDecision (Fight 22
+           (Goto 331))))
   , ( 158
     , Chapter
         (NoDecision
@@ -829,10 +658,8 @@ chapters =
         (NoDecision (Goto 186)))
   , ( 162
     , Chapter
-        (EvadeFight
-           0
-           244 27
-           (Goto 302)))
+        (NoDecision (Fight 27
+           (Goto 302))))
   , ( 163
     , Chapter
         (NoDecision (Goto 240)))
@@ -936,12 +763,9 @@ chapters =
         (NoDecision (Goto 240)))
   , ( 185
     , Chapter
-        (EvadeFight
-           0
-           286
-           25
+        (NoDecision (Fight 25
            (Fight 26
-              (Goto 120))))
+              (Goto 120)))))
   , ( 186
     , Chapter
         (Decisions []))
@@ -1330,10 +1154,8 @@ chapters =
            ]))
   , ( 268
     , Chapter
-        (EvadeFight
-           2
-           125 25
-           (Goto 333)))
+        (NoDecision (Fight 25
+           (Goto 333))))
   , ( 269
     , Chapter
         (NoDecision (Goto 349)))
@@ -1446,27 +1268,22 @@ chapters =
         (NoDecision (Goto 340)))
   , ( 296
     , Chapter
-        (EvadeFight
-           0
-           88 22
+        (NoDecision (Fight 22
            (Fight 20
               (Fight 19
                  (Fight 19
                     (Fight 18
                        (Fight 17
-                          (Goto 221))))))))
+                          (Goto 221)))))))))
   , ( 297
     , Chapter
         (NoDecision (Goto 32)))
   , ( 298
     , Chapter
-        (EvadeFight
-           0
-           121
-           23
+        (NoDecision (Fight 23
            (Fight 21
               (Fight 20
-                 (Goto 301)))))
+                 (Goto 301))))))
   , ( 299
     , Chapter
         (Decisions
@@ -1636,11 +1453,7 @@ chapters =
         (NoDecision (Goto 65)))
   , ( 332
     , Chapter
-        (EvadeFight
-           0
-           92
-           30
-           (Goto 183)))
+        (NoDecision (Fight 30 (Goto 183))))
   , ( 333
     , Chapter
         (Decisions
@@ -1744,11 +1557,8 @@ chapters =
            ( (Goto 150))))
   , ( 348
     , Chapter
-        (EvadeFight
-           2
-           125
-           25
-           (Goto 333)))
+        (NoDecision (Fight 25
+           (Goto 333))))
   , ( 349
     , Chapter
         (Decisions
