@@ -11,7 +11,6 @@ module LoneWolf
     where
 
 import Data.Hashable
-import GHC.Generics
 import Parallel
 import qualified Data.HashMap.Strict as HM
 import qualified Memo
@@ -22,10 +21,10 @@ data ChapterOutcome
         | Goto Int
         deriving (Show, Eq)
 
-fight :: Int -> Int -> Probably Int
-fight i a = regroup $ do
+fight :: Int -> Int -> [Int]
+fight i a = map fst $ regroup $ do
       ((php, _), p) <- fightVanillaM i a
-      return (max 0 php, p)
+      return (php, p)
 
 fightVanillaM :: Int -> Int -> Probably (Int, Int)
 fightVanillaM = Memo.memo2 Memo.bits Memo.bits fightVanilla
@@ -42,7 +41,7 @@ update i outcome =
   case outcome of
     Goto cid -> certain (cid, i)
     Fight fd nxt -> do
-      (hp, _) <- fight i fd
+      hp <- fight i fd
       update hp nxt
 
 memoState :: Memo.Memo (Int, Int)
