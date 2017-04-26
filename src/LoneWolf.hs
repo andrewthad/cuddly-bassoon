@@ -2,6 +2,7 @@
 {-# LANGUAGE OverloadedStrings #-}
 {-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE BangPatterns #-}
+{-# LANGUAGE FlexibleInstances #-}
 {-# LANGUAGE TupleSections #-}
 {-# LANGUAGE DeriveGeneric #-}
 
@@ -68,7 +69,7 @@ memoState :: Memo.Memo (Int, Int)
 memoState = Memo.pair Memo.bits Memo.bits
 
 
-solveLW :: [(Int, Decision)] -> Int -> Solution (Int, Int)
+solveLW :: [(Int, Decision)] -> Int -> Solution
 solveLW book cvariable = solve memoState step (const Unknown) (1, cvariable)
   where
     chapters = book
@@ -82,17 +83,17 @@ solveLW book cvariable = solve memoState step (const Unknown) (1, cvariable)
 
 
 type Probably a = [(a, Rational)]
-type Choice state = [(String, Probably state)]
+type Choice = [(String, Probably (Int, Int))]
 
-data Solution state = Node { _stt  :: state
+data Solution = Node { _stt  :: (Int, Int)
                                        , _score :: Rational
-                                       , _outcome :: Probably (Solution state)
+                                       , _outcome :: Probably (Solution)
                                        }
                                 | LeafLost
-                                | LeafWin Rational state
+                                | LeafWin Rational (Int, Int)
                                 deriving (Show, Eq, Generic)
 
-instance (NFData state) => NFData (Solution state)
+instance NFData (Solution)
 
 data Score = Lose | Win Rational | Unknown
 
@@ -110,24 +111,23 @@ regroup xs =
             then error $ "very bad" ++ show ("s'" :: String, s', "s" :: String, s)
             else xs'
 
-winStates :: (Show state, NFData state, Eq state, Hashable state, Ord state) => Solution state -> Probably state
+winStates :: Solution -> Probably (Int, Int)
 winStates s = case s of
   LeafLost -> []
   LeafWin _ st -> certain st
   Node _ _ ps -> regroup $ concat $ parMap rdeepseq (\(o,p) -> fmap (*p) <$> winStates o) ps
 
-getSolScore :: Solution state -> Rational
+getSolScore :: Solution -> Rational
 getSolScore s = case s of
                  LeafLost -> 0
                  LeafWin x _ -> x
                  Node _ x _ -> x
 
-solve ::  (NFData state)
-       => Memo.Memo state
-       -> (state -> Choice state)
-       -> (state -> Score)
-       -> state
-       -> Solution state
+solve :: Memo.Memo (Int, Int)
+       -> ((Int, Int) -> Choice)
+       -> ((Int, Int) -> Score)
+       -> (Int, Int)
+       -> Solution
 solve memo getChoice score = go
   where
     go = memo solve'
