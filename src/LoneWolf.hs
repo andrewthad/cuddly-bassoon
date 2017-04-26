@@ -17,24 +17,10 @@ import qualified Data.HashMap.Strict as HM
 import qualified Memo
 import Control.DeepSeq
 
-data Decision
-   = Decisions [Decision]
-   | NoDecision ChapterOutcome
-   deriving (Show, Eq)
-
-
 data ChapterOutcome
         = Fight Int ChapterOutcome
         | Goto Int
         deriving (Show, Eq)
-
-
-flattenDecision :: Int -> Decision -> [ChapterOutcome]
-flattenDecision cvariable d = case d of
-        NoDecision o -> [o]
-        Decisions lst -> do
-            d' <- lst
-            flattenDecision cvariable d'
 
 fight :: Int -> Int -> Probably Int
 fight cvariable fdetails = regroup $ do
@@ -63,19 +49,19 @@ memoState :: Memo.Memo (Int, Int)
 memoState = Memo.pair Memo.bits Memo.bits
 
 
-solveLW :: [(Int, Decision)] -> Int -> Solution
+solveLW :: [(Int, [ChapterOutcome])] -> Int -> Solution
 solveLW book cvariable = solve memoState step (1, cvariable)
   where
     step (cid, curvariable) = case lookup cid book of
                   Nothing -> return []
-                  Just d -> update curvariable <$>  flattenDecision curvariable d
+                  Just d -> map (update curvariable) d
 
 type Probably a = [(a, Rational)]
 type Choice = [(Probably (Int, Int))]
 
 data Solution = Node
     { _stt  :: (Int, Int)
-    , _outcome :: Probably (Solution)
+    , _outcome :: Probably Solution
     }
     | LeafLost
         deriving (Show, Eq, Generic)
@@ -105,4 +91,4 @@ solve memo getChoice = go
       where
         scored = parMap rdeepseq scoreTree (getChoice stt)
         scoreTree  pstates = let ptrees = map (\(o, p) -> (go o, p)) pstates
-                                     in Node stt ptrees
+                              in Node stt ptrees
