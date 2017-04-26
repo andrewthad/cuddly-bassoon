@@ -1,5 +1,4 @@
-module LoneWolf.Solve
-    (solveLW, startVariable) where
+module LoneWolf.Solve (solveLW) where
 
 import Solver (Solution(..), Score(..), solve, certain)
 import LoneWolf.Choices (flattenDecision)
@@ -8,40 +7,17 @@ import LoneWolf.Rules
 import qualified Memo
 
 
-startVariable :: Int
-startVariable = 20
-
 memoState :: Memo.Memo NextStep
-memoState = Memo.wrap fromWord64 toWord64 (Memo.pair Memo.bits Memo.bits)
+memoState = Memo.pair Memo.bits Memo.bits
 
-toWord64 :: NextStep -> (Int, Int)
-toWord64 s = case s of
-                 HasLost -> (0, 0)
-                 HasWon cvariable -> (0, cvariable)
-                 NewChapter a b -> (a, b)
 
-fromWord64 :: (Int, Int) -> NextStep
-fromWord64 (0, 0) = HasLost
-fromWord64 (cid16, cvalue) = NewChapter cid16 cvalue
-
-solveLW :: [(Int, Decision)] -> Int -> Solution NextStep String
-solveLW book cvariable = solve memoState step getScore (NewChapter 1 cvariable)
+solveLW :: [(Int, Decision)] -> Int -> Solution (Int, Int) String
+solveLW book cvariable = solve memoState step (const Unknown) (1, cvariable)
   where
     chapters = book
-    step (NewChapter cid curvariable ) = case lookup cid chapters of
+    step (cid, curvariable ) = case lookup cid chapters of
                   Nothing -> return ("", [])
                   Just d -> do
                       (desc, outcome) <- flattenDecision curvariable d
                       return (unwords desc, update curvariable outcome)
-    step (HasWon c) = [("won", certain (HasWon c))]
-    step HasLost = [("lost", certain HasLost)]
-    getScore ns = case ns of
-                      NewChapter 200 _ -> Win 1 -- l
-                      NewChapter 33 _ -> Win 1
-                      NewChapter 88 _ -> Win 1
-                      NewChapter 150 _ -> Win 1
-                      NewChapter 265 _ -> Win 1
-                      HasWon _ -> Win 1
-                      HasLost -> Lose
-                      _ -> Unknown
-
+    step _ = [("", [])]

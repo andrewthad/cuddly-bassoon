@@ -16,17 +16,12 @@ import Parallel (NFData)
 
 
 
-data NextStep = NewChapter !ChapterId !Int
-              | HasLost
-              | HasWon Int
-              deriving (Show, Eq, Generic, Ord)
-instance Hashable NextStep
-instance NFData NextStep
+type NextStep = (Int, Int)
 
-update :: Int -> ChapterOutcome -> Probably NextStep
+update :: Int -> ChapterOutcome -> Probably (Int, Int)
 update cvariable outcome =
   case outcome of
-    Goto cid -> certain (NewChapter cid cvariable)
+    Goto cid -> certain (cid, cvariable)
     Conditionally (o:_) -> update cvariable o
     Conditionally _ -> undefined
     Fight fd nxt -> regroup $  do

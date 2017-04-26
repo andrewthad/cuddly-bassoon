@@ -6,5 +6,5 @@ import Solver
 
 main :: IO ()
 main = do
-    let solution = solveLW chapters startVariable
+    let solution = solveLW chapters 20
     print (fromRational (_score solution) :: Double)
