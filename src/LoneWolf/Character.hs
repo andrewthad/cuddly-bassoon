@@ -2,8 +2,6 @@
 {-# LANGUAGE GeneralizedNewtypeDeriving #-}
 
 module LoneWolf.Character
-    ( Endurance(..), CharacterVariable(..), curendurance, mkCharacter
-    )
     where
 
 import GHC.Generics
@@ -13,6 +11,11 @@ import Lens
 import Data.Bits
 import Parallel
 
+
+type Character = Int
+type Endurance = Int
+type CharacterVariable = Int
+{-
 
 data Character = Character
     { _variableData :: CharacterVariable
@@ -32,4 +35,4 @@ mkCharacter (Endurance e) = CharacterVariable e
 
 curendurance :: Lens' CharacterVariable Endurance
 curendurance f (CharacterVariable w) = (CharacterVariable . getEndurance) <$> f (Endurance w)
-{-# INLINE curendurance #-}
+{-# INLINE curendurance #-} -}

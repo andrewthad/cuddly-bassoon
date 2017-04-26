@@ -10,8 +10,8 @@ import qualified Memo
 import Data.Word
 
 
-startVariable :: CharacterVariable
-startVariable = mkCharacter 20
+startVariable :: Int
+startVariable = 20
 
 memoState :: Memo.Memo NextStep
 memoState = Memo.wrap fromWord64 toWord64 (Memo.pair Memo.bits Memo.bits)
@@ -20,17 +20,16 @@ toWord64 :: NextStep -> (Word16, Int)
 toWord64 s = case s of
                  HasLost -> (0, 0)
                  HasWon cvariable -> toWord64 (NewChapter 0 cvariable)
-                 NewChapter cid (CharacterVariable cvalue)  ->
+                 NewChapter cid cvalue  ->
                     let cidb16 = fromIntegral cid
                     in  (cidb16, cvalue)
 
 fromWord64 :: (Word16, Int) -> NextStep
 fromWord64 (0, 0) = HasLost
 fromWord64 (cid16, cvalue) =
-    let cvariable = CharacterVariable cvalue
-    in NewChapter (fromIntegral cid16) cvariable
+     NewChapter (fromIntegral cid16) cvalue
 
-solveLW :: [(ChapterId, Chapter)] -> CharacterVariable -> Solution NextStep String
+solveLW :: [(ChapterId, Chapter)] -> Int -> Solution NextStep String
 solveLW book cvariable = solve memoState step getScore (NewChapter 1 cvariable)
   where
     chapters = book

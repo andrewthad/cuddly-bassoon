@@ -38,4 +38,4 @@ update cvariable outcome =
       fmap (*p) <$> update cvariable o
     Fight fd nxt -> regroup $  do
       (charendurance, _) <- fight cvariable fd
-      update (cvariable & curendurance .~ charendurance) nxt
+      update charendurance nxt

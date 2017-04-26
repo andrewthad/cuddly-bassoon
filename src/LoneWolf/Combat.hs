@@ -8,10 +8,10 @@ import Solver
 import qualified Memo
 import Lens
 
-fight :: CharacterVariable -> FightDetails -> Probably Endurance
+fight :: Int -> FightDetails -> Probably Int
 fight cvariable fdetails = regroup $ do
       let ohp = fdetails ^. fendurance
-      ((php, _), p) <- fightVanillaM (cvariable ^. curendurance) ohp
+      ((php, _), p) <- fightVanillaM (cvariable ^. id) ohp
       return (max 0 php, p)
 
 fightVanillaM :: Endurance -> Endurance -> Probably (Endurance, Endurance)
