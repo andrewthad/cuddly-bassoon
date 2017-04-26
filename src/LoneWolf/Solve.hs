@@ -15,18 +15,15 @@ startVariable = 20
 memoState :: Memo.Memo NextStep
 memoState = Memo.wrap fromWord64 toWord64 (Memo.pair Memo.bits Memo.bits)
 
-toWord64 :: NextStep -> (Word16, Int)
+toWord64 :: NextStep -> (Int, Int)
 toWord64 s = case s of
                  HasLost -> (0, 0)
-                 HasWon cvariable -> toWord64 (NewChapter 0 cvariable)
-                 NewChapter cid cvalue  ->
-                    let cidb16 = fromIntegral cid
-                    in  (cidb16, cvalue)
+                 HasWon cvariable -> (0, cvariable)
+                 NewChapter a b -> (a, b)
 
-fromWord64 :: (Word16, Int) -> NextStep
+fromWord64 :: (Int, Int) -> NextStep
 fromWord64 (0, 0) = HasLost
-fromWord64 (cid16, cvalue) =
-     NewChapter (fromIntegral cid16) cvalue
+fromWord64 (cid16, cvalue) = NewChapter cid16 cvalue
 
 solveLW :: [(ChapterId, Chapter)] -> Int -> Solution NextStep String
 solveLW book cvariable = solve memoState step getScore (NewChapter 1 cvariable)
