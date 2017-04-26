@@ -6,7 +6,6 @@ import LoneWolf.Choices (flattenDecision)
 import LoneWolf.Chapter (ChapterId, Chapter(..))
 import LoneWolf.Rules
 import qualified Memo
-import Data.Word
 
 
 startVariable :: Int

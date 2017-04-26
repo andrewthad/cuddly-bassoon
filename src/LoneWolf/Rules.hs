@@ -31,9 +31,6 @@ update cvariable outcome =
     GameWon -> certain (HasWon cvariable)
     Conditionally (o:_) -> update cvariable o
     Conditionally _ -> undefined
-    Randomly rands -> regroup $ do
-      (p, o) <- rands
-      fmap (*p) <$> update cvariable o
     Fight fd nxt -> regroup $  do
       (charendurance, _) <- fight cvariable fd
       update charendurance nxt

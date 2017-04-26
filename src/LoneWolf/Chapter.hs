@@ -27,7 +27,6 @@ data Decision
 
 data ChapterOutcome
         = Fight Int ChapterOutcome
-        | Randomly [(Proba, ChapterOutcome)]
         | Conditionally [(ChapterOutcome)]
         | Goto ChapterId
         | GameLost

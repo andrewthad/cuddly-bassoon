@@ -1,6 +1,5 @@
 module LoneWolf.Book02 where
 
-import Data.Ratio
 import LoneWolf.Chapter
 
 chapters :: [(ChapterId, Chapter)]
@@ -54,8 +53,8 @@ chapters =
   , ( 10
     , Chapter
         ((NoDecision
-              (Randomly
-                 [(2 % 5, Goto 51), (3 % 10, Goto 195), (3 % 10, Goto 339)]))))
+              (Conditionally
+                 [(Goto 51), (Goto 195), (Goto 339)]))))
   , ( 11
     , Chapter
         (NoDecision GameLost))
@@ -64,14 +63,14 @@ chapters =
         (Decisions
            [ (
                  (NoDecision
-                    (Randomly
-                       [(1 % 5, Goto 58), (3 % 10, Goto 167), (1 % 2, Goto 329)])))
+                    (Conditionally
+                       [(Goto 58), (Goto 167), (Goto 329)])))
            , (
                  (NoDecision
-                    (Randomly
-                       [ (2 % 5, Goto 58)
-                       , (3 % 10, Goto 167)
-                       , (3 % 10, Goto 329)
+                    (Conditionally
+                       [ (Goto 58)
+                       , ( Goto 167)
+                       , ( Goto 329)
                        ])))
            ]))
   , ( 13
@@ -108,21 +107,21 @@ chapters =
   , ( 21
     , Chapter
         (NoDecision
-           (Randomly
-              [ (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
+           (Conditionally
+              [ ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
               ])))
   , ( 22
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 119), (1 % 2, Goto 341)])))
+        (NoDecision (Conditionally[(Goto 119), (Goto 341)])))
   , ( 23
     , Chapter
         (NoDecision
@@ -171,7 +170,7 @@ chapters =
     , Chapter
         (NoDecision
            (
-              (Randomly [(1 % 2, Goto 176), (1 % 2, Goto 254)]))))
+              (Conditionally[(Goto 176), (Goto 254)]))))
   , ( 32
     , Chapter
         (NoDecision ((Goto 186))))
@@ -245,7 +244,7 @@ chapters =
         (NoDecision GameLost))
   , ( 45
     , Chapter
-        (NoDecision (Randomly [(4 % 5, Goto 311), (1 % 5, Goto 159)])))
+        (NoDecision (Conditionally [(Goto 311), (Goto 159)])))
   , ( 46
     , Chapter
         (Decisions
@@ -300,17 +299,17 @@ chapters =
   , ( 57
     , Chapter
         (NoDecision
-           (Randomly
-              [ (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
-              , (1 % 10, (Goto 282))
+           (Conditionally
+              [ ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
+              , ((Goto 282))
               ])))
   , ( 58
     , Chapter
@@ -426,7 +425,7 @@ chapters =
            ]))
   , ( 81
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 260), (1 % 2, Goto 281)])))
+        (NoDecision (Conditionally [(Goto 260), (Goto 281)])))
   , ( 82
     , Chapter
         (Decisions
@@ -517,7 +516,7 @@ chapters =
            ]))
   , ( 99
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 326), (1 % 2, Goto 163)])))
+        (NoDecision (Conditionally [(Goto 326), (Goto 163)])))
   , ( 100
     , Chapter
         (Decisions
@@ -550,7 +549,7 @@ chapters =
            ]))
   , ( 105
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 286), (1 % 2, Goto 120)])))
+        (NoDecision (Conditionally [(Goto 286), (Goto 120)])))
   , ( 106
     , Chapter
         ((NoDecision
@@ -592,7 +591,7 @@ chapters =
   , ( 114
     , Chapter
         (NoDecision
-           (Randomly [(2 % 5, Goto 206), (2 % 5, Goto 63), (1 % 5, Goto 8)])))
+           (Conditionally [(Goto 206), (Goto 63), (Goto 8)])))
   , ( 115
     , Chapter
         (Decisions
@@ -603,17 +602,17 @@ chapters =
   , ( 116
     , Chapter
         (NoDecision
-           (Randomly
-              [ (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
-              , (1 % 10, (Goto 314))
+           (Conditionally
+              [ ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
+              , ((Goto 314))
               ])))
   , ( 117
     , Chapter
@@ -647,7 +646,7 @@ chapters =
         (NoDecision
            (Conditionally
               [ (Goto 96)
-              , (Randomly [(1 % 2, Goto 46), (1 % 2, Goto 112)])
+              , (Conditionally [(Goto 46), (Goto 112)])
               ])))
   , ( 123
     , Chapter
@@ -780,11 +779,11 @@ chapters =
            ]))
   , ( 151
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 262), (1 % 2, Goto 110)])))
+        (NoDecision (Conditionally[(Goto 262), (Goto 110)])))
   , ( 152
     , Chapter
         (NoDecision
-           (Randomly [(2 % 5, Goto 216), (3 % 10, Goto 49), (3 % 10, Goto 193)])))
+           (Conditionally [(Goto 216), (Goto 49), (Goto 193)])))
   , ( 153
     , Chapter
         (Decisions
@@ -868,7 +867,7 @@ chapters =
   , ( 169
     , Chapter
         (NoDecision
-           (Randomly [(2 % 5, Goto 39), (3 % 10, Goto 249), (3 % 10, Goto 339)])))
+           (Conditionally [(Goto 39), (Goto 249), (Goto 339)])))
   , ( 171
     , Chapter
         (Decisions
@@ -894,7 +893,7 @@ chapters =
         (NoDecision (Goto 162)))
   , ( 175
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 53), (1 % 2, Goto 209)])))
+        (NoDecision (Conditionally [(Goto 53), (Goto 209)])))
   , ( 176
     , Chapter
         (Decisions
@@ -931,7 +930,7 @@ chapters =
         (NoDecision (Goto 177)))
   , ( 183
     , Chapter
-        (NoDecision (Randomly [(9 % 10, Goto 311), (1 % 1, Goto 159)])))
+        (NoDecision (Conditionally [(Goto 311), (Goto 159)])))
   , ( 184
     , Chapter
         (NoDecision (Goto 240)))
@@ -1003,7 +1002,7 @@ chapters =
   , ( 197
     , Chapter
         (NoDecision
-           (Randomly [(2 % 5, Goto 78), (1 % 2, Goto 141), (1 % 1, Goto 247)])))
+           (Conditionally [(Goto 78), (Goto 141), (Goto 247)])))
   , ( 198
     , Chapter
         (NoDecision
@@ -1022,7 +1021,7 @@ chapters =
            ]))
   , ( 201
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 285), (1 % 2, Goto 70)])))
+        (NoDecision (Conditionally [(Goto 285), (Goto 70)])))
   , ( 202
     , Chapter
         (NoDecision (Goto 31)))
@@ -1052,7 +1051,7 @@ chapters =
         (NoDecision (Goto 197)))
   , ( 210
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 275), (1 % 2, Goto 330)])))
+        (NoDecision (Conditionally [(Goto 275), (Goto 330)])))
   , ( 212
     , Chapter
         (NoDecision GameLost))
@@ -1382,7 +1381,7 @@ chapters =
            ]))
   , ( 278
     , Chapter
-        (NoDecision (Randomly [(7 % 10, Goto 41), (3 % 10, Goto 180)])))
+        (NoDecision (Conditionally [(Goto 41), (Goto 180)])))
   , ( 279
     , Chapter
         (Decisions
@@ -1391,7 +1390,7 @@ chapters =
            ]))
   , ( 280
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 2), (1 % 2, Goto 108)])))
+        (NoDecision (Conditionally [(Goto 2), (Goto 108)])))
   , ( 281
     , Chapter
         (NoDecision (Goto 240)))
@@ -1478,12 +1477,12 @@ chapters =
   , ( 300
     , Chapter
         (NoDecision
-           (Randomly
-              [ (1 % 5, Goto 224)
-              , (1 % 5, Goto 316)
-              , (1 % 5, Goto 81)
-              , (1 % 5, Goto 22)
-              , (1 % 5, Goto 99)
+           (Conditionally
+              [ (Goto 224)
+              , (Goto 316)
+              , (Goto 81)
+              , (Goto 22)
+              , (Goto 99)
               ])))
   , ( 301
     , Chapter
@@ -1557,7 +1556,7 @@ chapters =
            ]))
   , ( 316
     , Chapter
-        (NoDecision (Randomly [(1 % 2, Goto 107), (1 % 2, Goto 94)])))
+        (NoDecision (Conditionally [(Goto 107), (Goto 94)])))
   , ( 317
     , Chapter
         (NoDecision GameLost))
