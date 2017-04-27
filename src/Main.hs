@@ -33,10 +33,6 @@ fibFight 0 = []
 fibFight 1 = []
 fibFight x = [(x - 1), (x - 2)]
 
-solveLW :: ()
-solveLW = solve memoState step (100, 100)
-  where
-    step (cid, hp) = map (update hp) (fibFight cid)
 
 -----------------------------------------------------------------------------------
 regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => [(a, Int)] -> [(a, Int)]
@@ -45,17 +41,14 @@ regroup xs =
         s' = sum (map snd xs')
         s  = sum (map snd xs)
      in if s' /= s
-            then error $ "Those are expected to be equal" ++ show (s', s)
+            then if show s' == show s
+                    then error "WAT????"
+                    else error $ "Those are expected to be equal" ++ show (s', s)
             else xs'
 ----------------------------------------------------------------------------------
 
-solve :: Memo.Memo (Int, Int) -> ((Int, Int) -> [[(Int, Int)]]) -> (Int, Int) -> ()
-solve memo getChoice = go
-  where
-    go = memo solve'
-    solve' stt = rnf scored
-      where
-        scored = parMap rdeepseq (map go) (getChoice stt)
-
 main :: IO ()
-main = rnf solveLW `seq` return ()
+main = rnf (go (50, 100)) `seq` return ()
+    where
+        go = memoState (rnf . parMap rdeepseq (map go) . step)
+        step (cid, hp) = map (update hp) (fibFight cid)
