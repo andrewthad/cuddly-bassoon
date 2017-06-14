@@ -27,6 +27,7 @@ module Data.HashMap.Array
     , unsafeUpdateM
     , insert
     , insertM
+    , insertMM
     , delete
 
     , unsafeFreeze
@@ -44,6 +45,7 @@ module Data.HashMap.Array
     , map
     , map'
     , traverse
+    , traverseST
     , filter
     , toList
     ) where
@@ -66,8 +68,6 @@ import Prelude hiding (filter, foldr, length, map, read, traverse)
 #else
 import Prelude hiding (filter, foldr, length, map, read)
 #endif
-import qualified Prelude
-
 
 #if __GLASGOW_HASKELL__ >= 702
 import GHC.Exts (sizeofArray#, copyArray#, thawArray#, sizeofMutableArray#,
@@ -81,8 +81,6 @@ import qualified Prelude
 import Data.HashMap.Unsafe (runST)
 
 ------------------------------------------------------------------------
-
-#define ASSERTS 1
 
 #if defined(ASSERTS)
 -- This fugly hack is brought by GHC's apparent reluctance to deal
@@ -302,6 +300,19 @@ insertM ary idx b =
   where !count = length ary
 {-# INLINE insertM #-}
 
+-- | /O(n)/ Insert an element at the given position in this array,
+-- increasing its size by one.
+insertMM :: MArray s e -> Int -> e -> ST s (MArray s e)
+insertMM ary idx b =
+    CHECK_BOUNDS("insertMM", count + 1, idx)
+        do mary <- new_ (count+1)
+           copyM ary 0 mary 0 idx
+           write mary idx b
+           copyM ary idx mary (idx+1) (count-idx)
+           pure mary
+  where !count = lengthM ary
+{-# INLINE insertMM #-}
+
 -- | /O(n)/ Update the element at the given position in this array.
 update :: Array e -> Int -> e -> Array e
 update ary idx b = runST (updateM ary idx b)
@@ -435,6 +446,25 @@ traverse :: Applicative f => (a -> f b) -> Array a -> f (Array b)
 traverse f = \ ary -> fromList (length ary) `fmap`
                       Traversable.traverse f (toList ary)
 {-# INLINE traverse #-}
+
+-- | It's much cheaper to traverse in 'ST' with 'traverseST'
+-- than to traverse in an arbitrary 'Applicative' with 'traverse'.
+traverseST :: (a -> ST s b) -> Array a -> ST s (Array b)
+traverseST f = \ xs ->
+  let
+    lxs = length xs
+
+    go mary i
+      | i == lxs = unsafeFreeze mary
+      | otherwise = do
+          x <- indexM xs i
+          x' <- f x
+          write mary i x'
+          go mary (i + 1)
+  in do
+       mary <- new_ lxs
+       go mary 0
+{-# INLINE traverseST #-}
 
 filter :: (a -> Bool) -> Array a -> Array a
 filter p = \ ary ->
