@@ -3,11 +3,12 @@
 
 module Main where
 
-import Data.Hashable
 import Parallel
-import qualified Data.HashMap.Strict as HM
 import qualified Memo
+import qualified Data.Map.Lazy as M
 import Control.DeepSeq
+import Control.Monad.ST
+import Data.STRef
 
 fight :: Int -> Int -> [Int]
 fight i a = map fst $ fightVanillaM i a
@@ -35,10 +36,10 @@ fibFight x = [(x - 1), (x - 2)]
 
 
 -----------------------------------------------------------------------------------
-regroup :: (NFData a, Show a, Hashable a, Eq a, Ord a) => [(a, Int)] -> [(a, Int)]
+regroup :: (NFData a, Show a, Eq a, Ord a) => [(a, Int)] -> [(a, Int)]
 regroup xs =
-    let xs' = HM.toList $ HM.fromListWith (+) xs
-        s' = sum (map snd xs')
+    let xs' = M.toList $ M.fromListWith (+) xs
+        s' = addTheNumbers (map (\(_,x) -> x) xs) -- sum (map snd xs')
         s  = sum (map snd xs)
      in if s' /= s
             then if show s' == show s
@@ -46,6 +47,15 @@ regroup xs =
                     else error $ "Those are expected to be equal" ++ show (s', s)
             else xs'
 ----------------------------------------------------------------------------------
+
+addTheNumbers :: [Int] -> Int
+addTheNumbers xs0 = runST $ do
+  y <- newSTRef 0
+  let go [] = readSTRef y
+      go (x : xs) = do
+        modifySTRef y (+x)
+        go xs
+  go xs0
 
 main :: IO ()
 main = rnf (go (50, 100)) `seq` return ()

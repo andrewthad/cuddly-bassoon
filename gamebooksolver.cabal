@@ -31,7 +31,6 @@ executable gamebooksolver-solvebook02
   other-modules:       Parallel
                        Memo
   build-depends:       base
-                     , unordered-containers
-                     , hashable
                      , deepseq
+                     , containers
   default-language:    Haskell2010
